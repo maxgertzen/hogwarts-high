@@ -4,85 +4,61 @@
 // 8- Hobbies (not required. Chess, Movies, Sport, Cars, Dolls)
 import { FormControl, InputGroup, Container, Form, Button, Col, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 
-const urlValid = '/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/'
 
 // import Phase2 from 'Phase2';
 
 function Phase3() {
-    const [loginData, setLoginData] = useState({
 
-        image: {
-            value: '',
-            errors: [],
-            validations: {
+    const Phase3 = ({ onNextPhase }) => {
+            const [wizardData, setWizardData] = useState({
+            image: {
                 required: true,
-                pattern: null
-            }
-        },
-        hobbies: {
-            value: '',
-            errors: [],
-            validations: {
+                pattern: '/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/'
+            },
+            hobbie: {
                 required: false,
                 pattern: null
             }
-        },
 
-    })
-
-
-    const validateInput = ({ target: { value, name } }) => {
-        //Clear email error
-        const newErrors = [];
-        const { validations } = loginData[name];
-
-        if (validations.required && !value) {
-            newErrors.push(`${name} is required`);
-        }
-
-        if (validations.pattern && !validations.pattern.test(value)) {
-            newErrors.push(`Invalid ${name} value`);
-        }
+        })
 
 
-        setLoginData({
-            ...loginData,
-            [name]: {
-                ...loginData[name],
-                value: value,
-                errors: newErrors
-            }
-        });
-    };
 
 
-    return <>
-        <Form>
-            <Form.Group controlId="phase2-file">
-                <Form.File id="exampleFormControlFile1" label="Example file input" />
-            </Form.Group>
-            <Form.Group controlId="exampleForm.ControlSelect2">
-                <Form.Label>Example multiple select</Form.Label>
-                <Form.Control as="select" multiple>
-                    <option>Chess</option>
-                    <option>Movies</option>
-                    <option>Sport</option>
-                    <option>Cars</option>
-                    <option>Dolls</option>
-                </Form.Control>
-            </Form.Group>
-            <Button variant="success" type="button" onClick={(e) => handleEndForm(e)}>
-                End
+        return <>
+            <Form>
+                <Form.Group controlId="phase2-file">
+                    <Form.File 
+                    id="image" 
+                    name="image" 
+                    label="image" />
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlSelect2">
+                    <Form.Label>Example multiple select</Form.Label>
+                    <Form.Control as="select" multiple
+                        id="hobbie"
+                        name="hobbie"
+                        className="form-control"
+                    >
+                        <option>Chess</option>
+                        <option>Movies</option>
+                        <option>Sport</option>
+                        <option>Cars</option>
+                        <option>Dolls</option>
+                    </Form.Control>
+                </Form.Group>
+                <Button variant="success" type="button" onClick={(e) => handleEndForm(e)}>
+                    End
             </Button>
-            {
-                prevPhase ?
-                    <Button variant="outline-success" type="button" onClick={() => prevPhase()}>
-                        Back
+                {
+                    prevPhase ?
+                        <Button variant="outline-success" type="button" onClick={() => prevPhase()}>
+                            Back
                 </Button> :
-                    null}
+                        null}
 
-        </Form>
-    </>
-}
+            </Form>
+        </>
+    }
 
-export default Phase2;
+    export default Phase2;
