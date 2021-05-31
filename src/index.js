@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import Phase3 from './components/Phase3'
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Phase3 />
   </React.StrictMode>,
   document.getElementById('root')
 );
