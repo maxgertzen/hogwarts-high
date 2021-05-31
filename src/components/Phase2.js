@@ -14,7 +14,7 @@ function Phase2({ onNextPhase, prevPhase }) {
         });
     }
 
-    const handleNext = () => {
+    const handleNext = (e) => {
 
     }
     return (
