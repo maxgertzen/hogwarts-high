@@ -24,9 +24,6 @@ const validateWizardData = ({ target: { value, name } }) => {
     newErrors.push(`Invalid ${name} value`)
   }
 
-  //set the new email input value
-  //set the errors
-
   return newErrors
 }
 
