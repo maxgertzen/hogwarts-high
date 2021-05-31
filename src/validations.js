@@ -10,6 +10,14 @@ const wizardValidations = {
   birthDate: {
     required: true,
   },
+  image: {
+    required: true,
+    pattern: '/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/'
+  },
+  hobbie: {
+    required: false,
+    pattern: null
+  }
 }
 
 const validateWizardData = ({ target: { value, name } }) => {
@@ -29,9 +37,11 @@ const validateWizardData = ({ target: { value, name } }) => {
 
 const validateDataOnSubmit = (wizardData) => {
   for (const name in wizardValidations) {
-    const { value } = wizardData[name]
-    const newErrors = validateWizardData({ target: { value, name } })
-    if (newErrors.length > 0) return { errors: newErrors, value, name }
+    if (name in wizardData) {
+      const { value } = wizardData[name]
+      const newErrors = validateWizardData({ target: { value, name } })
+      if (newErrors.length > 0) return { errors: newErrors, value, name }
+    }
   }
 
   return { errors: [], value: "", name: "" }

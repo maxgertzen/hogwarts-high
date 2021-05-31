@@ -5,12 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "./index.css"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
-import Summary from './components/Summary'
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Summary />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 )

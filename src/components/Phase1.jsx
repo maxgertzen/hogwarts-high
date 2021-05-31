@@ -106,7 +106,7 @@ const Phase1 = ({ onNextPhase }) => {
         />
       </InputGroup>
 
-      <Button onClick={handleFormSubmit} variant="outline-success">
+      <Button onClick={(e) => handleFormSubmit(e)} variant="outline-success">
         Next Phase
       </Button>
     </Form>
