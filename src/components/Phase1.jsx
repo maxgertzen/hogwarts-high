@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { InputGroup, FormControl, Button, Form } from "react-bootstrap"
-import { validateWizardData } from "../validations"
+import { validateDataOnSubmit, validateWizardData } from "../validations"
 import FormErrorMessages from "./FormErrorMessages"
 
 const Phase1 = ({ onNextPhase }) => {
@@ -20,7 +20,7 @@ const Phase1 = ({ onNextPhase }) => {
   })
 
   const handleUpdatingWizardData = (e) => {
-    const { errors } = validateWizardData(e)
+    const errors = validateWizardData(e)
     const {
       target: { name, value },
     } = e
@@ -32,14 +32,6 @@ const Phase1 = ({ onNextPhase }) => {
         errors,
       },
     }))
-  }
-
-  const validateDataOnSubmit = () => {
-    // for (const name in wizardValidations) {
-    //   const { value } = wizardData[name]
-    //   const isErrors = validateWizardData({ target: { value, name } })
-    //   if (isErrors) return isErrors
-    // }
   }
 
   const clearState = () => {
@@ -62,9 +54,18 @@ const Phase1 = ({ onNextPhase }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault()
 
-    const isErrors = validateDataOnSubmit()
+    const { errors, value, name } = validateDataOnSubmit(wizardData)
 
-    if (isErrors) return
+    if (errors.length > 0) {
+      setWizardData((prevWizardData) => ({
+        ...prevWizardData,
+        [name]: {
+          value,
+          errors,
+        },
+      }))
+      return
+    }
 
     clearState()
 

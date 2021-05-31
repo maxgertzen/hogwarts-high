@@ -24,19 +24,18 @@ const validateWizardData = ({ target: { value, name } }) => {
     newErrors.push(`Invalid ${name} value`)
   }
 
-  //set the new email input value
-  //set the errors
-
-  return { errors: newErrors, isErrors: newErrors.length > 0 }
+  return newErrors
 }
 
-// const validateDataOnSubmit = () => {
-//   for (const name in wizardValidations) {
-//     const { value } = wizardData[name]
-//     const isErrors = validateWizardData({ target: { value, name } })
-//     if (isErrors) return isErrors
-//   }
-// }
+const validateDataOnSubmit = (wizardData) => {
+  for (const name in wizardValidations) {
+    const { value } = wizardData[name]
+    const newErrors = validateWizardData({ target: { value, name } })
+    if (newErrors.length > 0) return { errors: newErrors, value, name }
+  }
+
+  return { errors: [], value: "", name: "" }
+}
 
 // const clearState = () => {
 //   setWizardData({
@@ -67,4 +66,4 @@ const validateWizardData = ({ target: { value, name } }) => {
 //   onNextPhase(wizardData)
 // }
 
-export { validateWizardData }
+export { validateWizardData, validateDataOnSubmit }
