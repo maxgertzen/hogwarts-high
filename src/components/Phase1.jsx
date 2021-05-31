@@ -1,20 +1,7 @@
 import React, { useState } from "react"
 import { InputGroup, FormControl, Button, Form } from "react-bootstrap"
+import { validateWizardData } from "../validations"
 import FormErrorMessages from "./FormErrorMessages"
-
-const wizardValidations = {
-  fullname: {
-    required: true,
-    pattern: /[a-zA-Z]{2,} /,
-  },
-  email: {
-    required: true,
-    pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-  },
-  birthDate: {
-    required: true,
-  },
-}
 
 const Phase1 = ({ onNextPhase }) => {
   const [wizardData, setWizardData] = useState({
@@ -32,38 +19,27 @@ const Phase1 = ({ onNextPhase }) => {
     },
   })
 
-  const validateWizardData = ({ target: { value, name } }) => {
-    const newErrors = []
-    const validations = wizardValidations[name]
-
-    if (validations.required && !value) {
-      newErrors.push(`${name} is required`)
-    }
-
-    if (validations.pattern && !validations.pattern.test(value)) {
-      newErrors.push(`Invalid ${name} value`)
-    }
-
-    //set the new email input value
-    //set the errors
+  const handleUpdatingWizardData = (e) => {
+    const { errors } = validateWizardData(e)
+    const {
+      target: { name, value },
+    } = e
 
     setWizardData((prevWizardData) => ({
       ...prevWizardData,
       [name]: {
         value: value,
-        errors: newErrors,
+        errors,
       },
     }))
-
-    return newErrors.length > 0
   }
 
   const validateDataOnSubmit = () => {
-    for (const name in wizardValidations) {
-      const { value } = wizardData[name]
-      const isErrors = validateWizardData({ target: { value, name } })
-      if (isErrors) return isErrors
-    }
+    // for (const name in wizardValidations) {
+    //   const { value } = wizardData[name]
+    //   const isErrors = validateWizardData({ target: { value, name } })
+    //   if (isErrors) return isErrors
+    // }
   }
 
   const clearState = () => {
@@ -102,7 +78,7 @@ const Phase1 = ({ onNextPhase }) => {
         <FormControl
           placeholder="Your name"
           name="fullname"
-          onBlur={validateWizardData}
+          onBlur={handleUpdatingWizardData}
           aria-label="Fullname"
           aria-describedby="basic-addon1"
         />
@@ -113,7 +89,7 @@ const Phase1 = ({ onNextPhase }) => {
           placeholder="Your email"
           type="email"
           name="email"
-          onBlur={validateWizardData}
+          onBlur={handleUpdatingWizardData}
           aria-label="Email"
           aria-describedby="basic-addon1"
         />
@@ -122,7 +98,7 @@ const Phase1 = ({ onNextPhase }) => {
       <InputGroup className="mb-3">
         <FormControl
           type="date"
-          onBlur={validateWizardData}
+          onBlur={handleUpdatingWizardData}
           name="birthDate"
           aria-label="Date"
           aria-describedby="basic-addon1"
