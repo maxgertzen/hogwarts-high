@@ -5,11 +5,11 @@ import Button from 'react-bootstrap/Button'
 function Phase2({ onNextPhase, prevPhase }) {
     const [formProps, setFormProps] = useState({});
 
-    const handleChange = ({ target }, func) => {
+    const handleChange = ({ target: { name, value } }, func) => {
         func((prevObj) => {
             return {
                 ...prevObj,
-                [target.name]: target.value
+                [name]: value
             }
         });
     }
@@ -44,3 +44,5 @@ function Phase2({ onNextPhase, prevPhase }) {
         </Form>
     )
 }
+
+export default Phase2

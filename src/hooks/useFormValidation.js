@@ -1,15 +1,15 @@
-/* import React, {useState, useEffect} from 'react';
+/* import React, { useState, useEffect } from 'react';
 
-function useFormValidation({ ...formProps }){
-    const [ formProperties, setFormProperties ] = useState(formProps);
+function useFormValidation({ ...formProps }) {
+    const [formProperties, setFormProperties] = useState(formProps);
 
-    useEffect(() => {
-        const isValid = (inputs) => {
+    /*     useEffect(() => {
+            const isValid = (inputs) => {
 
-        }
+            }
 
-    },[formProperties])
+        },[formProperties])
 
 
-    return { validationObj, setterFunction}
+return { validationObj }
 } */
