@@ -17,7 +17,7 @@ function App() {
       ...prevObj,
       ...dataObj,
     }))
-    if (presentedPhase > -1) {
+    if (presentedPhase < 3) {
       setPresentedPhase((presentedPhase) => presentedPhase + 1)
     }
   }
@@ -34,17 +34,16 @@ function App() {
   return (
     <div className="App mt-5">
       <Router>
+        <FormPagination url={presentedPhase} />
         <Switch>
           <Route exact path="/">
-            <FormPagination />
             <Phase1 onNextPhase={handleNext} />
           </Route>
           <Route exact path="/phase-2">
-            <FormPagination />
             <Phase2 onNextPhase={handleNext} prevPhase={handlePrev} />
           </Route>
           <Route exact path="/phase-3">
-            <FormPagination />
+            <FormPagination url="3" />
             <Phase3 onNextPhase={handleNext} prevPhase={handlePrev} />
           </Route>
           <Route exact path="/summary">

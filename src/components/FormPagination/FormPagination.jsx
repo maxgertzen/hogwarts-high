@@ -1,11 +1,15 @@
-import React from 'react';
-import { useRouteMatch } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
 import './FormPagination.css';
 
-function FormPagination() {
-    // const [item, setItem] = useState('')
-    let { url: item } = useRouteMatch()
-    item = item.match(/(\d+|\/+)/).join('');
+function FormPagination({ url }) {
+    const [item, setItem] = useState('//');
+
+    useEffect(() => {
+        if (item) {
+            let newItem = item.match(/(\d+|\/+)/ig).join('')
+            setItem(newItem)
+        }
+    }, [item])
 
     return (
         <div className="path-container mx-auto my-2">
