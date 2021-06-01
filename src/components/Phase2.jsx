@@ -68,7 +68,7 @@ function Phase2({ onNextPhase }) {
     history.push("/")
   }
   return (
-    <Form>
+    <Form className="form-container">
       <Form.Group controlId="phase2-city">
         <Form.Label>City</Form.Label>
         <Form.Control
@@ -102,12 +102,14 @@ function Phase2({ onNextPhase }) {
           onBlur={handleChange}
         />
       </Form.Group>
+      <>
       <Button variant="success" type="button" onClick={(e) => handleNext(e)}>
         Next
       </Button>
       <Button variant="outline-success" type="button" onClick={handlePrevPhase}>
         Back
       </Button>
+      </>
     </Form>
   )
 }

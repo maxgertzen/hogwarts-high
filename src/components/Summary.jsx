@@ -17,7 +17,7 @@ function Summary({ data }) {
   console.log(data)
   return (
     <>
-      <Container>
+      <Container >
         <Row>
           <Col xs={6} md={4}>
             <Image src={data.image} roundedCircle />

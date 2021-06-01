@@ -64,7 +64,7 @@ const Phase1 = ({ onNextPhase }) => {
   }
 
   return (
-    <Form>
+    <Form className="form-container">
       <FormErrorMessages errors={wizardData.fullname.errors} />
       <InputGroup className="mb-3">
         <FormControl
