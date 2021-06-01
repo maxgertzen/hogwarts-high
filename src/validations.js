@@ -12,23 +12,25 @@ const wizardValidations = {
   },
   image: {
     required: true,
-    pattern: '/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/'
+    pattern: /(https?:\/\/.*\.(?:png|jpg|jpeg))/g,
   },
   hobbie: {
     required: false,
-    pattern: null
-  }
+    pattern: null,
+  },
 }
 
 const validateWizardData = ({ target: { value, name } }) => {
   const newErrors = []
   const validations = wizardValidations[name]
+  console.log(validations)
 
   if (validations.required && !value) {
     newErrors.push(`${name} is required`)
   }
 
   if (validations.pattern && !validations.pattern.test(value)) {
+    console.log(name, validations, value)
     newErrors.push(`Invalid ${name} value`)
   }
 

@@ -4,11 +4,13 @@ import Button from 'react-bootstrap/Button'
 import { validateDataOnSubmit } from '../validations';
 import FormErrorMessages from "./FormErrorMessages"
 import useLocalStorage from '../hooks/useLocalStorage';
+import { useHistory } from 'react-router-dom';
 
 function Phase2({ onNextPhase, prevPhase }) {
     const [storedCity, setStoredCity] = useLocalStorage('city', '')
     const [storedStreet, setStoredStreet] = useLocalStorage('street', '')
     const [storedStreetNum, setStoredStreetNum] = useLocalStorage('streetNumber', '')
+    const history = useHistory()
     const [formProps, setFormProps] = useState({
         city: {
             value: storedCity,
@@ -37,6 +39,7 @@ function Phase2({ onNextPhase, prevPhase }) {
         if (name === 'streetNumber') setStoredStreetNum(value);
     }
 
+
     const handleNext = (e) => {
         e.preventDefault()
 
@@ -52,8 +55,12 @@ function Phase2({ onNextPhase, prevPhase }) {
             }))
             return
         }
-
         onNextPhase(formProps)
+        history.push("/phase-3")
+    }
+
+    const handlePrevPhase = () => {
+        history.push("/")
     }
     return (
         <Form>
@@ -85,5 +92,7 @@ function Phase2({ onNextPhase, prevPhase }) {
         </Form>
     )
 }
+
+
 
 export default Phase2

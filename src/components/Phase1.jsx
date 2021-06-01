@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { InputGroup, FormControl, Button, Form } from "react-bootstrap"
 import useLocalStorage from "../hooks/useLocalStorage"
+import { useHistory } from "react-router-dom"
 import { validateDataOnSubmit, validateWizardData } from "../validations"
 import FormErrorMessages from "./FormErrorMessages"
 
@@ -8,6 +9,7 @@ const Phase1 = ({ onNextPhase }) => {
   const [storedFullName, setStoredFullName] = useLocalStorage('fullname', '')
   const [storedEmail, setStoredEmail] = useLocalStorage('email', '')
   const [storedBirthDate, setStoredBirthDate] = useLocalStorage('birthDate', '')
+  const history = useHistory()
   const [wizardData, setWizardData] = useState({
     fullname: {
       value: storedFullName,
@@ -58,6 +60,7 @@ const Phase1 = ({ onNextPhase }) => {
     }
 
     onNextPhase(wizardData)
+    history.push("/phase-2")
   }
 
   return (

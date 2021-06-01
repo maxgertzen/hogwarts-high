@@ -2,12 +2,12 @@
 // --------
 // 7- Image   (required, valid url)
 // 8- Hobbies (not required. Chess, Movies, Sport, Cars, Dolls)
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import { validateWizardData, validateDataOnSubmit } from '../validations';
+import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
+import Button from "react-bootstrap/Button"
+import Form from "react-bootstrap/Form"
+import { validateWizardData, validateDataOnSubmit } from "../validations"
 import useLocalStorage from "../hooks/useLocalStorage";
-
 
 // import Phase2 from 'Phase2';
 
@@ -25,6 +25,7 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
         }
 
     })
+    const history = useHistory()
 
     const handleUpdatingWizardData = (e) => {
         const errors = validateWizardData(e)
@@ -60,46 +61,60 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
         }
 
         onNextPhase(wizardData)
+        history.push("/summary")
     }
 
+    const handlePrevPhase = () => {
+        history.push("/phase-2")
+    }
 
-    return (<>
-        <Form>
-            <Form.Group controlId="phase2-file">
-                <Form.Label>Example multiple select</Form.Label>
-                <Form.Control
-                    id="image"
-                    name="image"
-                    label="image"
-                    type="text"
-                    onBlur={handleUpdatingWizardData} />
-            </Form.Group>
-            <Form.Group controlId="exampleForm.ControlSelect2">
-                <Form.Label>Example multiple select</Form.Label>
-                <Form.Control as="select" multiple
-                    id="hobbie"
-                    name="hobbie"
-                    className="form-control"
+    return (
+        <>
+            <Form>
+                <Form.Group>
+                    <Form.Label>Example multiple select</Form.Label>
+                    <Form.Control
+                        name="image"
+                        label="image"
+                        type="text"
+                        onBlur={handleUpdatingWizardData}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Example multiple select</Form.Label>
+                    <Form.Control
+                        as="select"
+                        multiple
+                        id="hobbie"
+                        name="hobbie"
+                        className="form-control"
+                    >
+                        <option>Chess</option>
+                        <option>Movies</option>
+                        <option>Sport</option>
+                        <option>Cars</option>
+                        <option>Dolls</option>
+                    </Form.Control>
+                </Form.Group>
+                <Button
+                    variant="success"
+                    type="button"
+                    onClick={(e) => handleFormSubmit(e)}
                 >
-                    <option>Chess</option>
-                    <option>Movies</option>
-                    <option>Sport</option>
-                    <option>Cars</option>
-                    <option>Dolls</option>
-                </Form.Control>
-            </Form.Group>
-            <Button variant="success" type="button" onClick={(e) => handleFormSubmit(e)}>
-                End
-            </Button>
-            {
-                prevPhase ?
-                    <Button variant="outline-success" type="button" onClick={() => prevPhase}>
+                    End
+                </Button>
+                {prevPhase ? (
+                    <Button
+                        variant="outline-success"
+                        type="button"
+                        onClick={handlePrevPhase}
+                    >
                         Back
-                    </Button> :
-                    null}
-
-        </Form>
-    </>)
+                    </Button>
+                ) : null}
+            </Form>
+        </>
+    )
 }
 
-export default Phase3;
+export default Phase3
