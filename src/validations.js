@@ -10,6 +10,15 @@ const wizardValidations = {
   birthDate: {
     required: true,
   },
+  city: {
+    required: true,
+  },
+  street: {
+    required: true,
+  },
+  streetNumber: {
+    required: false,
+  },
   image: {
     required: true,
     pattern: /(https?:\/\/.*\.(?:png|jpg|jpeg))/g,

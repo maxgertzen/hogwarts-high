@@ -6,9 +6,9 @@ import { validateDataOnSubmit, validateWizardData } from "../validations"
 import FormErrorMessages from "./FormErrorMessages"
 
 const Phase1 = ({ onNextPhase }) => {
-  const [storedFullName, setStoredFullName] = useLocalStorage('fullname', '')
-  const [storedEmail, setStoredEmail] = useLocalStorage('email', '')
-  const [storedBirthDate, setStoredBirthDate] = useLocalStorage('birthDate', '')
+  const [storedFullName, setStoredFullName] = useLocalStorage("fullname", "")
+  const [storedEmail, setStoredEmail] = useLocalStorage("email", "")
+  const [storedBirthDate, setStoredBirthDate] = useLocalStorage("birthDate", "")
   const history = useHistory()
   const [wizardData, setWizardData] = useState({
     fullname: {
@@ -38,9 +38,9 @@ const Phase1 = ({ onNextPhase }) => {
         errors,
       },
     }))
-    if (name === 'fullname') setStoredFullName(value);
-    if (name === 'email') setStoredEmail(value);
-    if (name === 'birthDate') setStoredBirthDate(value);
+    if (name === "fullname") setStoredFullName(value)
+    if (name === "email") setStoredEmail(value)
+    if (name === "birthDate") setStoredBirthDate(value)
   }
 
   const handleFormSubmit = (e) => {
@@ -73,6 +73,7 @@ const Phase1 = ({ onNextPhase }) => {
           onBlur={handleUpdatingWizardData}
           aria-label="Fullname"
           aria-describedby="basic-addon1"
+          defaultValue={wizardData.fullname.value}
         />
       </InputGroup>
       <FormErrorMessages errors={wizardData.email.errors} />
@@ -84,6 +85,7 @@ const Phase1 = ({ onNextPhase }) => {
           onBlur={handleUpdatingWizardData}
           aria-label="Email"
           aria-describedby="basic-addon1"
+          defaultValue={wizardData.email.value}
         />
       </InputGroup>
       <FormErrorMessages errors={wizardData.birthDate.errors} />
@@ -94,6 +96,7 @@ const Phase1 = ({ onNextPhase }) => {
           name="birthDate"
           aria-label="Date"
           aria-describedby="basic-addon1"
+          defaultValue={wizardData.birthDate.value}
         />
       </InputGroup>
 

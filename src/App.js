@@ -11,8 +11,7 @@ function App() {
   const [presentedPhase, setPresentedPhase] = useState(0)
 
   const handleNext = (dataObj) => {
-    console.error("HandleNext")
-    console.table(dataObj)
+    // console.table(dataObj)
     setInputData((prevObj) => ({
       ...prevObj,
       ...dataObj,
@@ -23,8 +22,7 @@ function App() {
   }
 
   const handlePrev = (dataObj) => {
-    console.error("HandlePrev")
-    console.table(dataObj)
+    // console.table(dataObj)
     setInputData((prevObj) => ({
       ...prevObj,
       ...dataObj,
