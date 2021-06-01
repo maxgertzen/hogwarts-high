@@ -5,9 +5,9 @@ import Form from "react-bootstrap/Form"
 import { validateWizardData, validateDataOnSubmit } from "../validations"
 import useLocalStorage from "../hooks/useLocalStorage"
 import FormErrorMessages from "./FormErrorMessages"
- 
 
-const Phase3 = ({ onNextPhase, prevPhase }) => {
+const Phase3 = ({ onNextPhase }) => {
+  const history = useHistory()
   const [storedImageUrl, setStoredImageUrl] = useLocalStorage("image", "")
   const [storedHobbie, setStoredHobbie] = useLocalStorage("hobbie", "")
   const [wizardData, setWizardData] = useState({
@@ -20,7 +20,6 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
       errors: [],
     },
   })
-  const history = useHistory()
 
   const handleUpdatingWizardData = (e) => {
     const errors = validateWizardData(e)
@@ -65,20 +64,22 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
 
   return (
     <>
-      <Form>
-        <Form.Group>
-          <Form.Label>Example multiple select</Form.Label>
+      <Form className="p-3">
+        <Form.Group className="mt-3">
+          <Form.Label>Image URL</Form.Label>
           <Form.Control
             name="image"
             label="image"
             type="text"
-            onBlur={handleUpdatingWizardData}
+            defaultValue={wizardData.image.value}
+            required
+            onChange={handleUpdatingWizardData}
           />
         </Form.Group>
         <FormErrorMessages errors={wizardData.image.errors} />
 
-        <Form.Group>
-          <Form.Label>Example multiple select</Form.Label>
+        <Form.Group className="my-3">
+          <Form.Label>Hobbies</Form.Label>
           <Form.Control
             as="select"
             multiple
@@ -93,22 +94,24 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
             <option>Dolls</option>
           </Form.Control>
         </Form.Group>
-        <Button
-          variant="success"
-          type="button"
-          onClick={(e) => handleFormSubmit(e)}
-        >
-          End
-        </Button>
-        {prevPhase ? (
+        <div className="d-flex justify-content-evenly">
           <Button
+            className="w-25"
             variant="outline-success"
             type="button"
             onClick={handlePrevPhase}
           >
-            Back
+            &lArr; Back
           </Button>
-        ) : null}
+          <Button
+            className="w-25"
+            variant="success"
+            type="button"
+            onClick={(e) => handleFormSubmit(e)}
+          >
+            End
+          </Button>
+        </div>
       </Form>
     </>
   )

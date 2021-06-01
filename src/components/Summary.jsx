@@ -1,40 +1,48 @@
-import {
-  Row,
-  Image,
-  ListGroup,
-  Card,
-  FormControl,
-  InputGroup,
-  Container,
-  Form,
-  Button,
-  Col,
-  ToggleButtonGroup,
-  ToggleButton,
-} from "react-bootstrap"
+import React, { useEffect } from "react"
+import { Row, Image, ListGroup, Container, Col } from "react-bootstrap"
+
 // import img from './'
 function Summary({ data }) {
-  console.log(data)
+  useEffect(() => {
+    for (const key in data) {
+      localStorage.removeItem(key)
+    }
+  }, [])
+
+  console.table(data)
   return (
     <>
-      <Container>
+      <Container className="d-flex flex-column align-items-center my-2">
+        <h2 className="text-dark">Summary</h2>
         <Row>
-          <Col xs={6} md={4}>
-            <Image src={data.image} roundedCircle />
+          <Col className="my-3">
+            <Image
+              src={data.image.value}
+              style={{ clipPath: "circle()" }}
+              height="200px"
+              width="200px"
+              fluid
+            />
           </Col>
-          <Col xs={6} md={4}>
-            <Card style={{ width: "18rem" }}>
-              <ListGroup variant="flush">
-                <ListGroup.Item>Name: {data.name}</ListGroup.Item>
-                <ListGroup.Item>Email: {data.email}</ListGroup.Item>
-                <ListGroup.Item>Birth Date: {data.birthDate}</ListGroup.Item>
-                <ListGroup.Item>
-                  Address: {data.city} - {data.street} - {data.number}
-                </ListGroup.Item>
-                <ListGroup.Item>E-mail: {data.email}</ListGroup.Item>
-                <ListGroup.Item>Hobbies: {data.hobbies}</ListGroup.Item>
-              </ListGroup>
-            </Card>
+        </Row>
+        <Row>
+          <Col>
+            <ListGroup variant="flush">
+              <ListGroup.Item className="mt-2">
+                <strong> Name: </strong> {data.fullname.value}
+              </ListGroup.Item>
+              <ListGroup.Item className="mt-2">
+                <strong> Email: </strong> {data.email.value}
+              </ListGroup.Item>
+              <ListGroup.Item className="mt-2">
+                <strong> Birth Date: </strong> {data.birthDate.value}
+              </ListGroup.Item>
+              <ListGroup.Item className="mt-2">
+                <strong> Address: </strong> {data.city.value} -
+                {data.street.value}
+              </ListGroup.Item>
+              {/* <ListGroup.Item>Hobbies: {data.hobbie}</ListGroup.Item> */}
+            </ListGroup>
           </Col>
         </Row>
       </Container>
@@ -42,15 +50,3 @@ function Summary({ data }) {
   )
 }
 export default Summary
-// 1- Name       (required, 2 words (fn + ln), minimum 2 characters each)
-// 2- Email      (required, valid email address)
-// 3- Birth Date (required, dd/MM/yy)
-// Phase 2:
-// --------
-// 4- City   (required)
-// 5- Street (required)
-// 6- Number (not required, not 0 or negative)
-// Phase 3:
-// --------
-// 7- Image   (required, valid url)
-// 8- Hobbies (not required. Chess, Movies, Sport, Cars, Dolls)
