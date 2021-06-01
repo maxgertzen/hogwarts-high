@@ -7,7 +7,7 @@ function FormErrorMessages({ errors }) {
             className="form-text text-danger d-flex align-items-start"
             key={idx}
           >
-            {error} ,
+            {error}
           </small>
         )
       })}

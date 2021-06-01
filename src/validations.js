@@ -35,7 +35,7 @@ const validateWizardData = ({ target: { value, name } }) => {
   console.log(validations)
 
   if (validations.required && !value) {
-    newErrors.push(`${name} is required`)
+    newErrors.push(`${name} is required ,`)
   }
 
   if (validations.pattern && !validations.pattern.test(value)) {
