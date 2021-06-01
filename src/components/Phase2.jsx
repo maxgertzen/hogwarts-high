@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { validateDataOnSubmit } from '../validations';
+import FormErrorMessages from "./FormErrorMessages"
 
 function Phase2({ onNextPhase, prevPhase }) {
     const [formProps, setFormProps] = useState({
@@ -51,13 +52,16 @@ function Phase2({ onNextPhase, prevPhase }) {
             <Form.Group controlId="phase2-city">
                 <Form.Label>City</Form.Label>
                 <Form.Control type="text" placeholder="Enter City" name="city" onChange={e => handleChange(e, setFormProps)} required />
+                <FormErrorMessages errors={formProps.city.errors} />
             </Form.Group>
             <Form.Group controlId="phase2-street">
                 <Form.Label>Street</Form.Label>
                 <Form.Control type="text" placeholder="Enter Street" name="street" onChange={e => handleChange(e, setFormProps)} required />
+                <FormErrorMessages errors={formProps.street.errors} />
             </Form.Group>
             <Form.Group controlId="phase3-number">
-                <Form.Check type="number" label="N" name="streetNumber" onChange={e => handleChange(e, setFormProps)} />
+                <FormErrorMessages errors={formProps.streetNumber.errors} />
+                <Form.Control type="number" label="N" name="streetNumber" onChange={e => handleChange(e, setFormProps)} />
             </Form.Group>
             <Button variant="success" type="button" onClick={(e) => handleNext(e)}>
                 Next
