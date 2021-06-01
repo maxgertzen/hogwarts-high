@@ -61,12 +61,32 @@ const Phase3 = ({ onNextPhase }) => {
   const handlePrevPhase = () => {
     history.push("/phase-2")
   }
-
+  const addHobbie = (e) => {
+    if (e.target.name && e.target.checked) {
+      setWizardData((prevWizardData) => ({
+        ...prevWizardData,
+        hobbie: {
+          ...wizardData.hobbie,
+          value: setStoredHobbie(wizardData.hobbie.value + e.target.name + ","),
+        },
+      }))
+    } else {
+      setWizardData((prevWizardData) => ({
+        ...prevWizardData,
+        hobbie: {
+          ...wizardData.hobbie,
+          value: setStoredHobbie(
+            wizardData.hobbie.value.split(",").remove(e.target.name).join()
+          ),
+        },
+      }))
+    }
+  }
   return (
     <>
-      <Form className="p-3">
-        <Form.Group className="mt-3">
-          <Form.Label>Image URL</Form.Label>
+      <Form className="form-container">
+        <Form.Group>
+          <Form.Label>Example multiple select</Form.Label>
           <Form.Control
             name="image"
             label="image"
@@ -78,22 +98,49 @@ const Phase3 = ({ onNextPhase }) => {
         </Form.Group>
         <FormErrorMessages errors={wizardData.image.errors} />
 
-        <Form.Group className="my-3">
-          <Form.Label>Hobbies</Form.Label>
-          <Form.Control
-            as="select"
-            multiple
-            id="hobbie"
-            name="hobbie"
-            className="form-control"
-          >
-            <option>Chess</option>
-            <option>Movies</option>
-            <option>Sport</option>
-            <option>Cars</option>
-            <option>Dolls</option>
-          </Form.Control>
+        <Form.Label>Hobbie</Form.Label>
+
+        <Form.Group id="formGridCheckbox">
+          <Form.Check
+            type="checkbox"
+            name="chess"
+            label="Chess"
+            onClick={addHobbie}
+          />
         </Form.Group>
+        <Form.Group id="formGridCheckbox">
+          <Form.Check
+            type="checkbox"
+            name="movies"
+            label="Movies"
+            onClick={addHobbie}
+          />
+        </Form.Group>
+        <Form.Group id="formGridCheckbox">
+          <Form.Check
+            type="checkbox"
+            name="sport"
+            label="Sport"
+            onClick={addHobbie}
+          />
+        </Form.Group>
+        <Form.Group id="formGridCheckbox">
+          <Form.Check
+            type="checkbox"
+            name="cars"
+            label="Cars"
+            onClick={addHobbie}
+          />
+        </Form.Group>
+        <Form.Group id="formGridCheckbox">
+          <Form.Check
+            type="checkbox"
+            name="dolls"
+            label="Dolls"
+            onClick={addHobbie}
+          />
+        </Form.Group>
+
         <div className="d-flex justify-content-evenly">
           <Button
             className="w-25"
