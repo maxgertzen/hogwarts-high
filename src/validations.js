@@ -39,7 +39,6 @@ const validateWizardData = ({ target: { value, name } }) => {
   }
 
   if (validations.pattern && !validations.pattern.test(value)) {
-    console.log(name, validations, value)
     newErrors.push(`Invalid ${name} value`)
   }
 

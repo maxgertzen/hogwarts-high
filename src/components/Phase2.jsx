@@ -72,7 +72,7 @@ function Phase2({ onNextPhase }) {
   }
   return (
     <Form className="p-3">
-      <Form.Group className="mt-3" controlId="phase2-city" className="mt-2">
+      <Form.Group className="mt-3" controlId="phase2-city">
         <Form.Label>City</Form.Label>
         <Form.Control
           type="text"
@@ -84,6 +84,7 @@ function Phase2({ onNextPhase }) {
         />
         <FormErrorMessages errors={formProps.city.errors} />
       </Form.Group>
+
       <Form.Group className="mt-3" controlId="phase2-street">
         <Form.Label>Street</Form.Label>
         <Form.Control
@@ -96,7 +97,8 @@ function Phase2({ onNextPhase }) {
         />
         <FormErrorMessages errors={formProps.street.errors} />
       </Form.Group>
-      <Form.Group className="my-3" controlId="phase3-number">
+
+      <Form.Group className="mt-3" controlId="phase3-number">
         <Form.Label>Street Number</Form.Label>
         <Form.Control
           type="number"
@@ -106,7 +108,7 @@ function Phase2({ onNextPhase }) {
           onBlur={handleChange}
         />
       </Form.Group>
-      <div className="d-flex justify-content-evenly">
+      <Form.Group className="mt-3 d-flex justify-content-evenly">
         <Button
           className="w-25"
           variant="outline-success"
@@ -123,7 +125,7 @@ function Phase2({ onNextPhase }) {
         >
           Next &rArr;
         </Button>
-      </div>
+      </Form.Group>
     </Form>
   )
 }

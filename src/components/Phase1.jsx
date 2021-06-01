@@ -64,55 +64,60 @@ const Phase1 = ({ onNextPhase }) => {
   }
 
   return (
-    <Form className="p-3 form-container">
+    <Form className="p-3 ">
       <Form.Group className="mt-3" controlId="fullname">
         <Form.Label>Full Name</Form.Label>
         <FormControl
           placeholder="Your name"
           name="fullname"
-          id="fullname"
           onBlur={handleUpdatingWizardData}
           aria-label="Fullname"
           aria-describedby="basic-addon1"
           defaultValue={wizardData.fullname.value}
         />
+        <div className="d-flex flex-start errors-container flex-nowrap">
+          <FormErrorMessages errors={wizardData.fullname.errors} />
+        </div>
       </Form.Group>
-      <FormErrorMessages errors={wizardData.fullname.errors} />
-      <Form.Group className="mt-3">
-        <Form.Label controlId="email">Email Address</Form.Label>
+      <Form.Group className="mt-3" controlId="email">
+        <Form.Label>Email Address</Form.Label>
         <FormControl
           placeholder="Your email"
           type="email"
           name="email"
-          id="email"
           onBlur={handleUpdatingWizardData}
           aria-label="Email"
           aria-describedby="basic-addon1"
           defaultValue={wizardData.email.value}
         />
+        <div className="d-flex flex-start errors-container flex-nowrap">
+          <FormErrorMessages errors={wizardData.email.errors} />
+        </div>
       </Form.Group>
-      <FormErrorMessages errors={wizardData.email.errors} />
-      <Form.Group className="mt-3">
-        <Form.Label controlId="birthDate">Birth Date</Form.Label>
+      <Form.Group className="mt-3" controlId="birthDate">
+        <Form.Label>Birth Date</Form.Label>
         <FormControl
           type="date"
-          id="birthDate"
           onBlur={handleUpdatingWizardData}
           name="birthDate"
           aria-label="Date"
           aria-describedby="basic-addon1"
           defaultValue={wizardData.birthDate.value}
         />
+        <div className="d-flex flex-start errors-container flex-nowrap">
+          <FormErrorMessages errors={wizardData.birthDate.errors} />
+        </div>
       </Form.Group>
-      <FormErrorMessages errors={wizardData.birthDate.errors} />
 
-      <Button
-        className="mx-auto w-50 mt-3"
-        onClick={(e) => handleFormSubmit(e)}
-        variant="outline-success"
-      >
-        Next Phase &rArr;
-      </Button>
+      <Form.Group className="mt-3">
+        <Button
+          className="mx-auto w-50 "
+          onClick={(e) => handleFormSubmit(e)}
+          variant="outline-success"
+        >
+          Next Phase &rArr;
+        </Button>
+      </Form.Group>
     </Form>
   )
 }
