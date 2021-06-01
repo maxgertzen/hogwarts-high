@@ -6,19 +6,16 @@ import { validateWizardData, validateDataOnSubmit } from "../validations"
 import useLocalStorage from "../hooks/useLocalStorage"
 import FormErrorMessages from "./FormErrorMessages"
 
-const Phase3 = ({ onNextPhase }) => {
-  const history = useHistory()
-  const [storedImageUrl, setStoredImageUrl] = useLocalStorage("image", "")
-  const [storedHobbie, setStoredHobbie] = useLocalStorage("hobbie", "")
+
+const Phase3 = ({ onNextPhase, prevPhase }) => {
+  const [storedImageUrl, setStoredImageUrl] = useLocalStorage("image", "");
+  const [storedHobbies, setStoredHobbies] = useLocalStorage("hobbies", JSON.stringify([]));
   const [wizardData, setWizardData] = useState({
     image: {
       value: storedImageUrl,
       errors: [],
     },
-    hobbie: {
-      value: storedHobbie,
-      errors: [],
-    },
+    hobbies: []
   })
 
   const handleUpdatingWizardData = (e) => {
@@ -35,7 +32,7 @@ const Phase3 = ({ onNextPhase }) => {
       },
     }))
     if (name === "image") setStoredImageUrl(value)
-    if (name === "hobbie") setStoredHobbie(value)
+    if (name === "hobbies") setStoredHobbies(value)
   }
 
   const handleFormSubmit = (e) => {
@@ -61,26 +58,48 @@ const Phase3 = ({ onNextPhase }) => {
   const handlePrevPhase = () => {
     history.push("/phase-2")
   }
+  
   const addHobbie = (e) => {
     if (e.target.name && e.target.checked) {
+        setStoredHobbies(JSON.stringify(
+          [
+            ...wizardData.hobbies,
+            e.target.name
+          ]))
+        setWizardData((prevWizardData) => ({
+          ...prevWizardData,
+          hobbies: [
+            ...wizardData.hobbies,
+            e.target.name
+          ]
+        }))
+    }
+    else {
+      setStoredHobbies(JSON.stringify(wizardData.hobbies.filter(hobbie => hobbie  !==  e.target.name)))
       setWizardData((prevWizardData) => ({
         ...prevWizardData,
-        hobbie: {
-          ...wizardData.hobbie,
-          value: setStoredHobbie(wizardData.hobbie.value + e.target.name + ","),
-        },
-      }))
-    } else {
-      setWizardData((prevWizardData) => ({
-        ...prevWizardData,
-        hobbie: {
-          ...wizardData.hobbie,
-          value: setStoredHobbie(
-            wizardData.hobbie.value.split(",").remove(e.target.name).join()
-          ),
-        },
+        hobbies: wizardData.hobbies.filter(hobbie => hobbie  !==  e.target.name)
       }))
     }
+    // else {
+    //   debugger 
+    //   console.log(wizardData.hobbie.value)
+    //   if (wizardData.hobbie.value.split(',') > 0 && wizardData.hobbie.value) {
+    //     const temp = wizardData.hobbie.value.name.split(',').remove(e.target.name).join();
+    //     if (e.target.name) {
+  
+    //       setWizardData((prevWizardData) => ({
+    //         ...prevWizardData,
+    //         hobbie: {
+    //           ...wizardData.hobbie,
+    //           value: temp,
+    //         },
+    //       }))
+    //     }
+    //   }
+
+    // }
+
   }
   return (
     <>
@@ -98,47 +117,20 @@ const Phase3 = ({ onNextPhase }) => {
           <FormErrorMessages errors={wizardData.image.errors} />
         </Form.Group>
 
-        <Form.Group className="mt-3" id="formGridCheckbox">
-          <Form.Label>Hobbies</Form.Label>
-          <Form.Check
-            type="checkbox"
-            name="chess"
-            label="Chess"
-            onClick={addHobbie}
-          />
+        <Form.Group id="chessformGridCheckbox">
+          <Form.Check type="checkbox" name="chess" label="Chess" onClick={addHobbie} />
         </Form.Group>
-
-        <Form.Group id="formGridCheckbox">
-          <Form.Check
-            type="checkbox"
-            name="movies"
-            label="Movies"
-            onClick={addHobbie}
-          />
+        <Form.Group id="moviesformGridCheckbox">
+          <Form.Check type="checkbox" name="movies" label="Movies" onClick={addHobbie} />
         </Form.Group>
-        <Form.Group id="formGridCheckbox">
-          <Form.Check
-            type="checkbox"
-            name="sport"
-            label="Sport"
-            onClick={addHobbie}
-          />
+        <Form.Group id="sportformGridCheckbox">
+          <Form.Check type="checkbox" name="sport" label="Sport" onClick={addHobbie} />
         </Form.Group>
-        <Form.Group id="formGridCheckbox">
-          <Form.Check
-            type="checkbox"
-            name="cars"
-            label="Cars"
-            onClick={addHobbie}
-          />
+        <Form.Group id="carsformGridCheckbox">
+          <Form.Check type="checkbox" name="cars" label="Cars" onClick={addHobbie} />
         </Form.Group>
-        <Form.Group id="formGridCheckbox">
-          <Form.Check
-            type="checkbox"
-            name="dolls"
-            label="Dolls"
-            onClick={addHobbie}
-          />
+        <Form.Group id="dollsformGridCheckbox">
+          <Form.Check type="checkbox" name="dolls" label="Dolls" onClick={addHobbie} />
         </Form.Group>
 
         <Form.Group className="d-flex justify-content-evenly mt-3">
