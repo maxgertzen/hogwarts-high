@@ -84,9 +84,9 @@ const Phase3 = ({ onNextPhase }) => {
   }
   return (
     <>
-      <Form className="form-container">
-        <Form.Group>
-          <Form.Label>Example multiple select</Form.Label>
+      <Form className=" p-3">
+        <Form.Group className="mt-3">
+          <Form.Label>Image URL</Form.Label>
           <Form.Control
             name="image"
             label="image"
@@ -95,12 +95,11 @@ const Phase3 = ({ onNextPhase }) => {
             required
             onChange={handleUpdatingWizardData}
           />
+          <FormErrorMessages errors={wizardData.image.errors} />
         </Form.Group>
-        <FormErrorMessages errors={wizardData.image.errors} />
 
-        <Form.Label>Hobbie</Form.Label>
-
-        <Form.Group id="formGridCheckbox">
+        <Form.Group className="mt-3" id="formGridCheckbox">
+          <Form.Label>Hobbies</Form.Label>
           <Form.Check
             type="checkbox"
             name="chess"
@@ -108,6 +107,7 @@ const Phase3 = ({ onNextPhase }) => {
             onClick={addHobbie}
           />
         </Form.Group>
+
         <Form.Group id="formGridCheckbox">
           <Form.Check
             type="checkbox"
@@ -141,7 +141,7 @@ const Phase3 = ({ onNextPhase }) => {
           />
         </Form.Group>
 
-        <div className="d-flex justify-content-evenly">
+        <Form.Group className="d-flex justify-content-evenly mt-3">
           <Button
             className="w-25"
             variant="outline-success"
@@ -158,7 +158,7 @@ const Phase3 = ({ onNextPhase }) => {
           >
             End
           </Button>
-        </div>
+        </Form.Group>
       </Form>
     </>
   )
