@@ -32,7 +32,7 @@ function App() {
     }
   }
   return (
-    <div className="App">
+    <div className="App mt-5">
       <Router>
         <Switch>
           <Route exact path="/">
