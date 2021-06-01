@@ -1,45 +1,56 @@
 import "./App.css"
-import React, { useState } from "react";
+import React, { useState } from "react"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Phase1 from "./components/Phase1"
-import Phase2 from "./components/Phase2";
+import Phase2 from "./components/Phase2"
 import Phase3 from "./components/Phase3"
-import Summary from "./components/Summary";
+import Summary from "./components/Summary"
 
 function App() {
   const [inputData, setInputData] = useState({})
-  const [presentedPhase, setPresentedPhase] = useState(0);
+  const [presentedPhase, setPresentedPhase] = useState(0)
 
   const handleNext = (dataObj) => {
-    console.error('HandleNext')
+    console.error("HandleNext")
     console.table(dataObj)
     setInputData((prevObj) => ({
       ...prevObj,
-      ...dataObj
+      ...dataObj,
     }))
     if (presentedPhase > -1) {
-      setPresentedPhase(presentedPhase => presentedPhase + 1)
+      setPresentedPhase((presentedPhase) => presentedPhase + 1)
     }
   }
 
   const handlePrev = (dataObj) => {
-    console.error('HandlePrev')
+    console.error("HandlePrev")
     console.table(dataObj)
     setInputData((prevObj) => ({
       ...prevObj,
-      ...dataObj
+      ...dataObj,
     }))
     if (presentedPhase > -1) {
-      setPresentedPhase(presentedPhase => presentedPhase - 1)
+      setPresentedPhase((presentedPhase) => presentedPhase - 1)
     }
   }
   return (
     <div className="App">
-      {
-        presentedPhase === 0 ? <Phase1 onNextPhase={handleNext} />
-          : presentedPhase === 1 ? <Phase2 onNextPhase={handleNext} prevPhase={handlePrev} />
-            : presentedPhase === 2 ? <Phase3 onNextPhase={handleNext} prevPhase={handlePrev} />
-              : presentedPhase === 3 ? <Summary data={inputData} /> : null
-      }
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Phase1 onNextPhase={handleNext} />
+          </Route>
+          <Route exact path="/phase-2">
+            <Phase2 onNextPhase={handleNext} prevPhase={handlePrev} />
+          </Route>
+          <Route exact path="/phase-3">
+            <Phase3 onNextPhase={handleNext} prevPhase={handlePrev} />
+          </Route>
+          <Route exact path="/summary">
+            <Summary data={inputData} />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   )
 }

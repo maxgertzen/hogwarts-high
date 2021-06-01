@@ -1,9 +1,11 @@
 import React, { useState } from "react"
 import { InputGroup, FormControl, Button, Form } from "react-bootstrap"
+import { useHistory } from "react-router-dom"
 import { validateDataOnSubmit, validateWizardData } from "../validations"
 import FormErrorMessages from "./FormErrorMessages"
 
 const Phase1 = ({ onNextPhase }) => {
+  const history = useHistory()
   const [wizardData, setWizardData] = useState({
     fullname: {
       value: "",
@@ -70,6 +72,7 @@ const Phase1 = ({ onNextPhase }) => {
     clearState()
 
     onNextPhase(wizardData)
+    history.push("/phase-2")
   }
 
   return (
