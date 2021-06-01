@@ -5,9 +5,9 @@ import Form from "react-bootstrap/Form"
 import { validateWizardData, validateDataOnSubmit } from "../validations"
 import useLocalStorage from "../hooks/useLocalStorage"
 import FormErrorMessages from "./FormErrorMessages"
- 
 
-const Phase3 = ({ onNextPhase, prevPhase }) => {
+const Phase3 = ({ onNextPhase }) => {
+  const history = useHistory()
   const [storedImageUrl, setStoredImageUrl] = useLocalStorage("image", "")
   const [storedHobbie, setStoredHobbie] = useLocalStorage("hobbie", "")
   const [wizardData, setWizardData] = useState({
@@ -20,7 +20,6 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
       errors: [],
     },
   })
-  const history = useHistory()
 
   const handleUpdatingWizardData = (e) => {
     const errors = validateWizardData(e)
@@ -67,18 +66,20 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
     <>
       <Form>
         <Form.Group>
-          <Form.Label>Example multiple select</Form.Label>
+          <Form.Label>Image</Form.Label>
           <Form.Control
             name="image"
             label="image"
             type="text"
-            onBlur={handleUpdatingWizardData}
+            defaultValue={wizardData.image.value}
+            required
+            onChange={handleUpdatingWizardData}
           />
         </Form.Group>
         <FormErrorMessages errors={wizardData.image.errors} />
 
         <Form.Group>
-          <Form.Label>Example multiple select</Form.Label>
+          <Form.Label>Hobbies</Form.Label>
           <Form.Control
             as="select"
             multiple
@@ -100,15 +101,13 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
         >
           End
         </Button>
-        {prevPhase ? (
-          <Button
-            variant="outline-success"
-            type="button"
-            onClick={handlePrevPhase}
-          >
-            Back
-          </Button>
-        ) : null}
+        <Button
+          variant="outline-success"
+          type="button"
+          onClick={handlePrevPhase}
+        >
+          Back
+        </Button>
       </Form>
     </>
   )

@@ -1,38 +1,40 @@
-import {
-  Row,
-  Image,
-  ListGroup,
-  Card,
-  FormControl,
-  InputGroup,
-  Container,
-  Form,
-  Button,
-  Col,
-  ToggleButtonGroup,
-  ToggleButton,
-} from "react-bootstrap"
+import React, { useEffect } from "react"
+import { Row, Image, ListGroup, Card, Container, Col } from "react-bootstrap"
+
 // import img from './'
 function Summary({ data }) {
-  console.log(data)
+  useEffect(() => {
+    for (const key in data) {
+      localStorage.removeItem(key)
+    }
+  }, [])
+
+  console.table(data)
   return (
     <>
       <Container>
         <Row>
           <Col xs={6} md={4}>
-            <Image src={data.image} roundedCircle />
+            <Image
+              src={data.image.value}
+              style={{ borderRadius: "50%", objectFit: "contain" }}
+              height="250px"
+              width="250px"
+              fluid
+            />
           </Col>
           <Col xs={6} md={4}>
             <Card style={{ width: "18rem" }}>
               <ListGroup variant="flush">
-                <ListGroup.Item>Name: {data.name}</ListGroup.Item>
-                <ListGroup.Item>Email: {data.email}</ListGroup.Item>
-                <ListGroup.Item>Birth Date: {data.birthDate}</ListGroup.Item>
+                <ListGroup.Item>Name: {data.fullname.value}</ListGroup.Item>
+                <ListGroup.Item>Email: {data.email.value}</ListGroup.Item>
                 <ListGroup.Item>
-                  Address: {data.city} - {data.street} - {data.number}
+                  Birth Date: {data.birthDate.value}
                 </ListGroup.Item>
-                <ListGroup.Item>E-mail: {data.email}</ListGroup.Item>
-                <ListGroup.Item>Hobbies: {data.hobbies}</ListGroup.Item>
+                <ListGroup.Item>
+                  Address: {data.city.value} - {data.street.value}
+                </ListGroup.Item>
+                {/* <ListGroup.Item>Hobbies: {data.hobbie}</ListGroup.Item> */}
               </ListGroup>
             </Card>
           </Col>
