@@ -1,15 +1,11 @@
-// Phase 3:
-// --------
-// 7- Image   (required, valid url)
-// 8- Hobbies (not required. Chess, Movies, Sport, Cars, Dolls)
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import { validateWizardData, validateDataOnSubmit } from "../validations"
 import useLocalStorage from "../hooks/useLocalStorage"
-
-// import Phase2 from 'Phase2';
+import FormErrorMessages from "./FormErrorMessages"
+ 
 
 const Phase3 = ({ onNextPhase, prevPhase }) => {
   const [storedImageUrl, setStoredImageUrl] = useLocalStorage("image", "")
@@ -79,6 +75,8 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
             onBlur={handleUpdatingWizardData}
           />
         </Form.Group>
+        <FormErrorMessages errors={wizardData.image.errors} />
+
         <Form.Group>
           <Form.Label>Example multiple select</Form.Label>
           <Form.Control

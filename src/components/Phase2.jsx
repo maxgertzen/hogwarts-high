@@ -9,10 +9,7 @@ import { useHistory } from "react-router-dom"
 function Phase2({ onNextPhase }) {
   const [storedCity, setStoredCity] = useLocalStorage("city", "")
   const [storedStreet, setStoredStreet] = useLocalStorage("street", "")
-  const [storedStreetNum, setStoredStreetNum] = useLocalStorage(
-    "streetNumber",
-    ""
-  )
+  const [storedStreetNum, setStoredStreetNum] = useLocalStorage( "streetNumber",  ""  )
   const history = useHistory()
   const [formProps, setFormProps] = useState({
     city: {
@@ -43,13 +40,6 @@ function Phase2({ onNextPhase }) {
       },
     }))
 
-    // func((prevObj) => {
-    //   return {
-    //     ...prevObj,
-    //     errors,
-    //     [name]: value,
-    //   }
-    // })
     if (name === "city") setStoredCity(value)
     if (name === "street") setStoredStreet(value)
     if (name === "streetNumber") setStoredStreetNum(value)
@@ -104,7 +94,6 @@ function Phase2({ onNextPhase }) {
         <FormErrorMessages errors={formProps.street.errors} />
       </Form.Group>
       <Form.Group controlId="phase3-number">
-        <FormErrorMessages errors={formProps.streetNumber.errors} />
         <Form.Control
           type="number"
           label="N"
