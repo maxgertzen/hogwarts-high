@@ -11,7 +11,6 @@ function App() {
   const [presentedPhase, setPresentedPhase] = useState(0)
 
   const handleNext = (dataObj) => {
-    // console.table(dataObj)
     setInputData((prevObj) => ({
       ...prevObj,
       ...dataObj,
@@ -22,7 +21,6 @@ function App() {
   }
 
   const handlePrev = (dataObj) => {
-    // console.table(dataObj)
     setInputData((prevObj) => ({
       ...prevObj,
       ...dataObj,
@@ -32,7 +30,7 @@ function App() {
     }
   }
   return (
-    <div className="App mt-5    ">
+    <div className="App mt-5">
       <Router>
         <Switch>
           <Route exact path="/">
