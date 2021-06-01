@@ -9,7 +9,10 @@ import { useHistory } from "react-router-dom"
 function Phase2({ onNextPhase }) {
   const [storedCity, setStoredCity] = useLocalStorage("city", "")
   const [storedStreet, setStoredStreet] = useLocalStorage("street", "")
-  const [storedStreetNum, setStoredStreetNum] = useLocalStorage( "streetNumber",  ""  )
+  const [storedStreetNum, setStoredStreetNum] = useLocalStorage(
+    "streetNumber",
+    ""
+  )
   const history = useHistory()
   const [formProps, setFormProps] = useState({
     city: {
@@ -68,8 +71,8 @@ function Phase2({ onNextPhase }) {
     history.push("/")
   }
   return (
-    <Form>
-      <Form.Group controlId="phase2-city">
+    <Form className="p-3">
+      <Form.Group className="mt-3" controlId="phase2-city" className="mt-2">
         <Form.Label>City</Form.Label>
         <Form.Control
           type="text"
@@ -81,7 +84,7 @@ function Phase2({ onNextPhase }) {
         />
         <FormErrorMessages errors={formProps.city.errors} />
       </Form.Group>
-      <Form.Group controlId="phase2-street">
+      <Form.Group className="mt-3" controlId="phase2-street">
         <Form.Label>Street</Form.Label>
         <Form.Control
           type="text"
@@ -93,7 +96,8 @@ function Phase2({ onNextPhase }) {
         />
         <FormErrorMessages errors={formProps.street.errors} />
       </Form.Group>
-      <Form.Group controlId="phase3-number">
+      <Form.Group className="my-3" controlId="phase3-number">
+        <Form.Label>Street Number</Form.Label>
         <Form.Control
           type="number"
           label="N"
@@ -102,12 +106,24 @@ function Phase2({ onNextPhase }) {
           onBlur={handleChange}
         />
       </Form.Group>
-      <Button variant="success" type="button" onClick={(e) => handleNext(e)}>
-        Next
-      </Button>
-      <Button variant="outline-success" type="button" onClick={handlePrevPhase}>
-        Back
-      </Button>
+      <div className="d-flex justify-content-evenly">
+        <Button
+          className="w-25"
+          variant="outline-success"
+          type="button"
+          onClick={handlePrevPhase}
+        >
+          &lArr; Back
+        </Button>
+        <Button
+          className="w-25"
+          variant="success"
+          type="button"
+          onClick={(e) => handleNext(e)}
+        >
+          Next &rArr;
+        </Button>
+      </div>
     </Form>
   )
 }

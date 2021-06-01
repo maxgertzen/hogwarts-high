@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { InputGroup, FormControl, Button, Form } from "react-bootstrap"
+import { FormControl, Button, Form } from "react-bootstrap"
 import useLocalStorage from "../hooks/useLocalStorage"
 import { useHistory } from "react-router-dom"
 import { validateDataOnSubmit, validateWizardData } from "../validations"
@@ -65,39 +65,45 @@ const Phase1 = ({ onNextPhase }) => {
 
   return (
     <Form className="p-3">
-      <InputGroup className="mt-2">
+      <Form.Group className="mt-3" controlId="fullname">
+        <Form.Label>Full Name</Form.Label>
         <FormControl
           placeholder="Your name"
           name="fullname"
+          id="fullname"
           onBlur={handleUpdatingWizardData}
           aria-label="Fullname"
           aria-describedby="basic-addon1"
           defaultValue={wizardData.fullname.value}
         />
-      </InputGroup>
+      </Form.Group>
       <FormErrorMessages errors={wizardData.fullname.errors} />
-      <InputGroup className="mt-2">
+      <Form.Group className="mt-3">
+        <Form.Label controlId="email">Email Address</Form.Label>
         <FormControl
           placeholder="Your email"
           type="email"
           name="email"
+          id="email"
           onBlur={handleUpdatingWizardData}
           aria-label="Email"
           aria-describedby="basic-addon1"
           defaultValue={wizardData.email.value}
         />
-      </InputGroup>
+      </Form.Group>
       <FormErrorMessages errors={wizardData.email.errors} />
-      <InputGroup className="mt-2">
+      <Form.Group className="mt-3">
+        <Form.Label controlId="birthDate">Birth Date</Form.Label>
         <FormControl
           type="date"
+          id="birthDate"
           onBlur={handleUpdatingWizardData}
           name="birthDate"
           aria-label="Date"
           aria-describedby="basic-addon1"
           defaultValue={wizardData.birthDate.value}
         />
-      </InputGroup>
+      </Form.Group>
       <FormErrorMessages errors={wizardData.birthDate.errors} />
 
       <Button
@@ -105,7 +111,7 @@ const Phase1 = ({ onNextPhase }) => {
         onClick={(e) => handleFormSubmit(e)}
         variant="outline-success"
       >
-        Next Phase
+        Next Phase &rArr;
       </Button>
     </Form>
   )
