@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { InputGroup, FormControl, Button, Form } from "react-bootstrap"
-import { validateWizardData } from "../validations"
+import { validateDataOnSubmit, validateWizardData } from "../validations"
 import FormErrorMessages from "./FormErrorMessages"
 
 const Phase1 = ({ onNextPhase }) => {
@@ -20,7 +20,7 @@ const Phase1 = ({ onNextPhase }) => {
   })
 
   const handleUpdatingWizardData = (e) => {
-    const { errors } = validateWizardData(e)
+    const errors = validateWizardData(e)
     const {
       target: { name, value },
     } = e
@@ -32,14 +32,6 @@ const Phase1 = ({ onNextPhase }) => {
         errors,
       },
     }))
-  }
-
-  const validateDataOnSubmit = () => {
-    // for (const name in wizardValidations) {
-    //   const { value } = wizardData[name]
-    //   const isErrors = validateWizardData({ target: { value, name } })
-    //   if (isErrors) return isErrors
-    // }
   }
 
   const clearState = () => {
@@ -62,9 +54,18 @@ const Phase1 = ({ onNextPhase }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault()
 
-    const isErrors = validateDataOnSubmit()
+    const { errors, value, name } = validateDataOnSubmit(wizardData)
 
-    if (isErrors) return
+    if (errors.length > 0) {
+      setWizardData((prevWizardData) => ({
+        ...prevWizardData,
+        [name]: {
+          value,
+          errors,
+        },
+      }))
+      return
+    }
 
     clearState()
 
@@ -73,7 +74,6 @@ const Phase1 = ({ onNextPhase }) => {
 
   return (
     <Form>
-      <FormErrorMessages errors={wizardData.fullname.errors} />
       <InputGroup className="mb-3">
         <FormControl
           placeholder="Your name"
@@ -83,7 +83,7 @@ const Phase1 = ({ onNextPhase }) => {
           aria-describedby="basic-addon1"
         />
       </InputGroup>
-      <FormErrorMessages errors={wizardData.email.errors} />
+      <FormErrorMessages errors={wizardData.fullname.errors} />
       <InputGroup className="mb-3">
         <FormControl
           placeholder="Your email"
@@ -94,7 +94,7 @@ const Phase1 = ({ onNextPhase }) => {
           aria-describedby="basic-addon1"
         />
       </InputGroup>
-      <FormErrorMessages errors={wizardData.birthDate.errors} />
+      <FormErrorMessages errors={wizardData.email.errors} />
       <InputGroup className="mb-3">
         <FormControl
           type="date"
@@ -104,8 +104,9 @@ const Phase1 = ({ onNextPhase }) => {
           aria-describedby="basic-addon1"
         />
       </InputGroup>
+      <FormErrorMessages errors={wizardData.birthDate.errors} />
 
-      <Button onClick={handleFormSubmit} variant="outline-success">
+      <Button onClick={(e) => handleFormSubmit(e)} variant="outline-success">
         Next Phase
       </Button>
     </Form>

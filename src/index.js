@@ -10,7 +10,7 @@ import Summary from './components/Summary'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Summary />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 )
