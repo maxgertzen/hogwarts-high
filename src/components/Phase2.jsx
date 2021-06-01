@@ -81,14 +81,9 @@ function Phase2({ onNextPhase }) {
             <Button variant="success" type="button" onClick={(e) => handleNext(e)}>
                 Next
             </Button>
-            {
-                prevPhase ?
-                    <Button variant="outline-success" type="button" onClick={handlePrevPhase}>
-                        Back
-                    </Button>
-                    :
-                    null
-            }
+            <Button variant="outline-success" type="button" onClick={handlePrevPhase}>
+                Back
+            </Button>
         </Form>
     )
 }
