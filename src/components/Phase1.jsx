@@ -64,7 +64,7 @@ const Phase1 = ({ onNextPhase }) => {
   }
 
   return (
-    <Form className="p-3">
+    <Form className="p-3 form-container">
       <Form.Group className="mt-3" controlId="fullname">
         <Form.Label>Full Name</Form.Label>
         <FormControl

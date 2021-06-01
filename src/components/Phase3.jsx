@@ -64,9 +64,9 @@ const Phase3 = ({ onNextPhase }) => {
 
   return (
     <>
-      <Form>
-        <Form.Group>
-          <Form.Label>Image</Form.Label>
+      <Form className="p-3">
+        <Form.Group className="mt-3">
+          <Form.Label>Image URL</Form.Label>
           <Form.Control
             name="image"
             label="image"
@@ -78,7 +78,7 @@ const Phase3 = ({ onNextPhase }) => {
         </Form.Group>
         <FormErrorMessages errors={wizardData.image.errors} />
 
-        <Form.Group>
+        <Form.Group className="my-3">
           <Form.Label>Hobbies</Form.Label>
           <Form.Control
             as="select"
@@ -94,20 +94,24 @@ const Phase3 = ({ onNextPhase }) => {
             <option>Dolls</option>
           </Form.Control>
         </Form.Group>
-        <Button
-          variant="success"
-          type="button"
-          onClick={(e) => handleFormSubmit(e)}
-        >
-          End
-        </Button>
-        <Button
-          variant="outline-success"
-          type="button"
-          onClick={handlePrevPhase}
-        >
-          Back
-        </Button>
+        <div className="d-flex justify-content-evenly">
+          <Button
+            className="w-25"
+            variant="outline-success"
+            type="button"
+            onClick={handlePrevPhase}
+          >
+            &lArr; Back
+          </Button>
+          <Button
+            className="w-25"
+            variant="success"
+            type="button"
+            onClick={(e) => handleFormSubmit(e)}
+          >
+            End
+          </Button>
+        </div>
       </Form>
     </>
   )
