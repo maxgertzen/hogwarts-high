@@ -6,18 +6,21 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { validateWizardData, validateDataOnSubmit } from '../validations';
+import useLocalStorage from "../hooks/useLocalStorage";
 
 
 // import Phase2 from 'Phase2';
 
 const Phase3 = ({ onNextPhase, prevPhase }) => {
+    const [storedImageUrl, setStoredImageUrl] = useLocalStorage('street', '')
+    const [storedHobbie, setStoredHobbie] = useLocalStorage('hobbie', '')
     const [wizardData, setWizardData] = useState({
         image: {
-            value: "",
+            value: storedImageUrl,
             errors: [],
         },
         hobbie: {
-            value: "",
+            value: storedHobbie,
             errors: [],
         }
 
@@ -36,6 +39,8 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
                 errors,
             },
         }))
+        if (name === 'image') setStoredImageUrl(value)
+        if (name === 'hobbie') setStoredHobbie(value)
     }
 
     const handleFormSubmit = (e) => {

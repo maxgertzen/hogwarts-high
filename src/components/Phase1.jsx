@@ -1,20 +1,24 @@
 import React, { useState } from "react"
 import { InputGroup, FormControl, Button, Form } from "react-bootstrap"
+import useLocalStorage from "../hooks/useLocalStorage"
 import { validateDataOnSubmit, validateWizardData } from "../validations"
 import FormErrorMessages from "./FormErrorMessages"
 
 const Phase1 = ({ onNextPhase }) => {
+  const [storedFullName, setStoredFullName] = useLocalStorage('fullname', '')
+  const [storedEmail, setStoredEmail] = useLocalStorage('email', '')
+  const [storedBirthDate, setStoredBirthDate] = useLocalStorage('birthDate', '')
   const [wizardData, setWizardData] = useState({
     fullname: {
-      value: "",
+      value: storedFullName,
       errors: [],
     },
     email: {
-      value: "",
+      value: storedEmail,
       errors: [],
     },
     birthDate: {
-      value: "",
+      value: storedBirthDate,
       errors: [],
     },
   })
@@ -32,23 +36,9 @@ const Phase1 = ({ onNextPhase }) => {
         errors,
       },
     }))
-  }
-
-  const clearState = () => {
-    setWizardData({
-      fullname: {
-        value: "",
-        errors: [],
-      },
-      email: {
-        value: "",
-        errors: [],
-      },
-      birthDate: {
-        value: "",
-        errors: [],
-      },
-    })
+    if (name === 'fullname') setStoredFullName(value);
+    if (name === 'email') setStoredEmail(value);
+    if (name === 'birthDate') setStoredBirthDate(value);
   }
 
   const handleFormSubmit = (e) => {
@@ -66,8 +56,6 @@ const Phase1 = ({ onNextPhase }) => {
       }))
       return
     }
-
-    clearState()
 
     onNextPhase(wizardData)
   }
