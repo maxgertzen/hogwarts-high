@@ -64,9 +64,8 @@ const Phase1 = ({ onNextPhase }) => {
   }
 
   return (
-    <Form>
-      <FormErrorMessages errors={wizardData.fullname.errors} />
-      <InputGroup className="mb-3">
+    <Form className="p-3">
+      <InputGroup className="mt-2">
         <FormControl
           placeholder="Your name"
           name="fullname"
@@ -76,8 +75,8 @@ const Phase1 = ({ onNextPhase }) => {
           defaultValue={wizardData.fullname.value}
         />
       </InputGroup>
-      <FormErrorMessages errors={wizardData.email.errors} />
-      <InputGroup className="mb-3">
+      <FormErrorMessages errors={wizardData.fullname.errors} />
+      <InputGroup className="mt-2">
         <FormControl
           placeholder="Your email"
           type="email"
@@ -88,8 +87,8 @@ const Phase1 = ({ onNextPhase }) => {
           defaultValue={wizardData.email.value}
         />
       </InputGroup>
-      <FormErrorMessages errors={wizardData.birthDate.errors} />
-      <InputGroup className="mb-3">
+      <FormErrorMessages errors={wizardData.email.errors} />
+      <InputGroup className="mt-2">
         <FormControl
           type="date"
           onBlur={handleUpdatingWizardData}
@@ -99,8 +98,13 @@ const Phase1 = ({ onNextPhase }) => {
           defaultValue={wizardData.birthDate.value}
         />
       </InputGroup>
+      <FormErrorMessages errors={wizardData.birthDate.errors} />
 
-      <Button onClick={(e) => handleFormSubmit(e)} variant="outline-success">
+      <Button
+        className="mx-auto w-50 mt-3"
+        onClick={(e) => handleFormSubmit(e)}
+        variant="outline-success"
+      >
         Next Phase
       </Button>
     </Form>
