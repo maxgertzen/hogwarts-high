@@ -1,5 +1,7 @@
 body {
   background: #364b44;
+  background: #364b44 url("/src/assets/bgpicture.jpg") center;
+  background-size: cover;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -7,7 +9,7 @@ body {
 }
 
 .App {
-  background-color: #f6ebff;
+  background-color: #f6ebffd3;
   border-radius: 20px;
   height: fit-content;
   padding: 20px;
