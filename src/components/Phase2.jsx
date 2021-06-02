@@ -24,7 +24,7 @@ function Phase2({ onNextPhase, prevPhase }) {
       value: storedStreet,
       errors: [],
     },
-    streetNumber: {
+    'street-number': {
       value: storedStreetNum,
       errors: [],
     },
@@ -60,7 +60,7 @@ function Phase2({ onNextPhase, prevPhase }) {
 
     if (name === "city") setStoredCity(value)
     if (name === "street") setStoredStreet(value)
-    if (name === "streetNumber") setStoredStreetNum(value)
+    if (name === "street-number") setStoredStreetNum(value)
   }
 
   const handleNext = (e) => {
@@ -119,10 +119,11 @@ function Phase2({ onNextPhase, prevPhase }) {
         <Form.Control
           type="number"
           label="N"
-          name="streetNumber"
+          name="street-number"
           defaultValue={formProps.streetNumber.value}
           onBlur={handleChange}
         />
+        <FormErrorMessages errors={null} />
       </Form.Group>
       <Form.Group className="mt-3 d-flex justify-content-evenly">
         <Button

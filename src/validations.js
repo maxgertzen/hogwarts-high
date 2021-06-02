@@ -1,5 +1,5 @@
 const wizardValidations = {
-  fullname: {
+  'full-name': {
     required: true,
     pattern: /[a-zA-Z]{2,} /,
   },
@@ -7,7 +7,7 @@ const wizardValidations = {
     required: true,
     pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
   },
-  birthDate: {
+  'birth-date': {
     required: true,
   },
   city: {
@@ -16,7 +16,7 @@ const wizardValidations = {
   street: {
     required: true,
   },
-  streetNumber: {
+  'street-number': {
     required: false,
   },
   image: {
@@ -34,12 +34,12 @@ const validateWizardData = ({ target: { value, name } }) => {
   const validations = wizardValidations[name]
   console.log(validations)
 
-  if (validations.required && !value) {
-    newErrors.push(`${name} is required`)
+  if (validations.pattern && !validations.pattern.test(value)) {
+    newErrors.push(`Invalid ${name.replace('-', ' ')}`)
   }
 
-  if (validations.pattern && !validations.pattern.test(value)) {
-    newErrors.push(`Invalid ${name}`)
+  if (validations.required && !value) {
+    newErrors.push(`${name.replace('-', ' ')} is required`)
   }
 
   return newErrors

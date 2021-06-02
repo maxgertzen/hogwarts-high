@@ -59,6 +59,6 @@ label {
 	height: 20px;
 }
 
-.errors-container small:last-child {
+.errors-container.multipleErr small:last-child {
 	margin-left: auto;
 }

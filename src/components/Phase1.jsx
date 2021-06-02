@@ -6,13 +6,13 @@ import { validateDataOnSubmit, validateWizardData } from "../validations"
 import FormErrorMessages from "./FormErrorMessages"
 
 const Phase1 = ({ onNextPhase }) => {
-  const [storedFullName, setStoredFullName] = useLocalStorage("fullname", "")
+  const [storedFullName, setStoredFullName] = useLocalStorage("full-name", "")
   const [storedEmail, setStoredEmail] = useLocalStorage("email", "")
-  const [storedBirthDate, setStoredBirthDate] = useLocalStorage("birthDate", "")
+  const [storedBirthDate, setStoredBirthDate] = useLocalStorage("birth-date", "")
   const history = useHistory()
   const [isValidated, setIsValidated] = useState(true)
   const [wizardData, setWizardData] = useState({
-    fullname: {
+    'full-name': {
       value: storedFullName,
       errors: [],
     },
@@ -20,7 +20,7 @@ const Phase1 = ({ onNextPhase }) => {
       value: storedEmail,
       errors: [],
     },
-    birthDate: {
+    'birth-date': {
       value: storedBirthDate,
       errors: [],
     },
@@ -54,9 +54,9 @@ const Phase1 = ({ onNextPhase }) => {
         errors,
       },
     }))
-    if (name === "fullname") setStoredFullName(value)
+    if (name === "full-name") setStoredFullName(value)
     if (name === "email") setStoredEmail(value)
-    if (name === "birthDate") setStoredBirthDate(value)
+    if (name === "birth-date") setStoredBirthDate(value)
   }
 
   const handleFormSubmit = (e) => {
@@ -85,13 +85,13 @@ const Phase1 = ({ onNextPhase }) => {
         <Form.Label>Full Name</Form.Label>
         <FormControl
           placeholder="Your name"
-          name="fullname"
+          name="full-name"
           onBlur={handleUpdatingWizardData}
           aria-label="Fullname"
           aria-describedby="basic-addon1"
-          defaultValue={wizardData.fullname.value}
+          defaultValue={wizardData['full-name'].value}
         />
-        <FormErrorMessages errors={wizardData.fullname.errors} />
+        <FormErrorMessages errors={wizardData['full-name'].errors} />
       </Form.Group>
       <Form.Group className="mt-3" controlId="email">
         <Form.Label>Email Address</Form.Label>
@@ -111,12 +111,13 @@ const Phase1 = ({ onNextPhase }) => {
         <FormControl
           type="date"
           onBlur={handleUpdatingWizardData}
-          name="birthDate"
+          name="birth-date"
           aria-label="Date"
           aria-describedby="basic-addon1"
-          defaultValue={wizardData.birthDate.value}
+          defaultValue={wizardData['birth-date'].value}
+          max="2199-12-31"
         />
-        <FormErrorMessages errors={wizardData.birthDate.errors} />
+        <FormErrorMessages errors={wizardData['birth-date'].errors} />
       </Form.Group>
 
       <Form.Group className="mt-3">
