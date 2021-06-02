@@ -56,33 +56,4 @@ const validateDataOnSubmit = (wizardData) => {
   return { errors: [], value: "", name: "" }
 }
 
-// const clearState = () => {
-//   setWizardData({
-//     fullname: {
-//       value: "",
-//       errors: [],
-//     },
-//     email: {
-//       value: "",
-//       errors: [],
-//     },
-//     birthDate: {
-//       value: "",
-//       errors: [],
-//     },
-//   })
-// }
-
-// const handleFormSubmit = (e) => {
-//   e.preventDefault()
-
-//   const isErrors = validateDataOnSubmit()
-
-//   if (isErrors) return
-
-//   clearState()
-
-//   onNextPhase(wizardData)
-// }
-
 export { validateWizardData, validateDataOnSubmit }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
-import { validateWizardData, validateDataOnSubmit } from "../validations"
+import { validateWizardData, validateDataOnSubmit } from "../utils/validations.js"
 import useLocalStorage from "../hooks/useLocalStorage"
 import FormErrorMessages from "./FormErrorMessages"
 

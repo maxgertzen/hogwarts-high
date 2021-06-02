@@ -34,6 +34,7 @@ function App() {
       setPresentedPhase((presentedPhase) => presentedPhase - 1)
     }
   }
+
   return (
     <div className="App mt-5">
       <Router>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { FormControl, Button, Form } from "react-bootstrap"
 import useLocalStorage from "../hooks/useLocalStorage"
 import { useHistory } from "react-router-dom"
-import { validateDataOnSubmit, validateWizardData } from "../validations"
+import { validateDataOnSubmit, validateWizardData } from "../utils/validations.js"
 import FormErrorMessages from "./FormErrorMessages"
 
 const Phase1 = ({ onNextPhase }) => {
