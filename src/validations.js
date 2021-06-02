@@ -1,5 +1,5 @@
 const wizardValidations = {
-  'full-name': {
+  "full-name": {
     required: true,
     pattern: /[a-zA-Z]{2,} /,
   },
@@ -7,7 +7,7 @@ const wizardValidations = {
     required: true,
     pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
   },
-  'birth-date': {
+  "birth-date": {
     required: true,
   },
   city: {
@@ -16,12 +16,12 @@ const wizardValidations = {
   street: {
     required: true,
   },
-  'street-number': {
+  "street-number": {
     required: false,
   },
   image: {
     required: true,
-    pattern: /(https?:\/\/.*\.(?:png|jpg|jpeg))/g,
+    pattern: /([a-zA-Z0-9\s_\\.\-\(\):])+(.png|.jpeg|.jpg)$/i,
   },
   hobbie: {
     required: false,
@@ -34,7 +34,7 @@ const validateWizardData = ({ target: { value, name } }) => {
   const validations = wizardValidations[name]
 
   if (validations.pattern && !validations.pattern.test(value)) {
-    newErrors.push(`Invalid ${name.replace('-', ' ')}`)
+    newErrors.push(`Invalid ${name.replace("-", " ")}`)
   }
 
   if (validations.required && !value) {
