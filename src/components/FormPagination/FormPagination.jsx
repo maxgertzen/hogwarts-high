@@ -5,11 +5,11 @@ function FormPagination({ url }) {
     const [item, setItem] = useState('//');
 
     useEffect(() => {
-        if (item) {
-            let newItem = item.match(/(\d+|\/+)/ig).join('')
+        if (url) {
+            let newItem = '' + url.match(/(\d+|\/+)/ig).join('')
             setItem(newItem)
         }
-    }, [item])
+    }, [url])
 
     return (
         <div className="path-container mx-auto my-2">

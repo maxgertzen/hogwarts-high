@@ -27,6 +27,7 @@ const Phase1 = ({ onNextPhase }) => {
 
   const handleUpdatingWizardData = (e) => {
     const errors = validateWizardData(e)
+    console.log(e)
     const {
       target: { name, value },
     } = e
