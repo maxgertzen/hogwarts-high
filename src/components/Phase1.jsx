@@ -115,6 +115,7 @@ const Phase1 = ({ onNextPhase }) => {
           aria-label="Date"
           aria-describedby="basic-addon1"
           defaultValue={wizardData['birth-date'].value}
+          min="1900-01-01"
           max="2199-12-31"
         />
         <FormErrorMessages errors={wizardData['birth-date'].errors} />

@@ -39,7 +39,7 @@ const validateWizardData = ({ target: { value, name } }) => {
   }
 
   if (validations.required && !value) {
-    newErrors.push(`${name.replace('-', ' ')} is required`)
+    newErrors.push(`required*`)
   }
 
   return newErrors

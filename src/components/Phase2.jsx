@@ -120,7 +120,7 @@ function Phase2({ onNextPhase, prevPhase }) {
           type="number"
           label="N"
           name="street-number"
-          defaultValue={formProps.streetNumber.value}
+          defaultValue={formProps['street-number'].value}
           onBlur={handleChange}
         />
         <FormErrorMessages errors={null} />
