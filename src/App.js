@@ -43,7 +43,6 @@ function App() {
             <Phase2 onNextPhase={handleNext} prevPhase={handlePrev} />
           </Route>
           <Route exact path="/phase-3">
-            <FormPagination url="3" />
             <Phase3 onNextPhase={handleNext} prevPhase={handlePrev} />
           </Route>
           <Route exact path="/summary">

@@ -17,7 +17,7 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
     },
     hobbies: []
   })
-
+  const history = useHistory()
   const handleUpdatingWizardData = (e) => {
     const errors = validateWizardData(e)
     const {
@@ -58,27 +58,27 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
   const handlePrevPhase = () => {
     history.push("/phase-2")
   }
-  
+
   const addHobbie = (e) => {
     if (e.target.name && e.target.checked) {
-        setStoredHobbies(JSON.stringify(
-          [
-            ...wizardData.hobbies,
-            e.target.name
-          ]))
-        setWizardData((prevWizardData) => ({
-          ...prevWizardData,
-          hobbies: [
-            ...wizardData.hobbies,
-            e.target.name
-          ]
-        }))
-    }
-    else {
-      setStoredHobbies(JSON.stringify(wizardData.hobbies.filter(hobbie => hobbie  !==  e.target.name)))
+      setStoredHobbies(JSON.stringify(
+        [
+          ...wizardData.hobbies,
+          e.target.name
+        ]))
       setWizardData((prevWizardData) => ({
         ...prevWizardData,
-        hobbies: wizardData.hobbies.filter(hobbie => hobbie  !==  e.target.name)
+        hobbies: [
+          ...wizardData.hobbies,
+          e.target.name
+        ]
+      }))
+    }
+    else {
+      setStoredHobbies(JSON.stringify(wizardData.hobbies.filter(hobbie => hobbie !== e.target.name)))
+      setWizardData((prevWizardData) => ({
+        ...prevWizardData,
+        hobbies: wizardData.hobbies.filter(hobbie => hobbie !== e.target.name)
       }))
     }
     // else {
@@ -87,7 +87,7 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
     //   if (wizardData.hobbie.value.split(',') > 0 && wizardData.hobbie.value) {
     //     const temp = wizardData.hobbie.value.name.split(',').remove(e.target.name).join();
     //     if (e.target.name) {
-  
+
     //       setWizardData((prevWizardData) => ({
     //         ...prevWizardData,
     //         hobbie: {

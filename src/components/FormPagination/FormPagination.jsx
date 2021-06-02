@@ -6,7 +6,7 @@ function FormPagination({ url }) {
 
     useEffect(() => {
         if (url) {
-            let newItem = '' + url.match(/(\d+|\/+)/ig).join('')
+            let newItem = '' + url
             setItem(newItem)
         }
     }, [url])
