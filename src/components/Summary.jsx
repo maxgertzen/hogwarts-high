@@ -29,13 +29,13 @@ function Summary({ data }) {
           <Col>
             <ListGroup variant="flush">
               <ListGroup.Item className="mt-2">
-                <strong> Name: </strong> {data.fullname.value}
+                <strong> Name: </strong> {data['full-name'].value}
               </ListGroup.Item>
               <ListGroup.Item className="mt-2">
                 <strong> Email: </strong> {data.email.value}
               </ListGroup.Item>
               <ListGroup.Item className="mt-2">
-                <strong> Birth Date: </strong> {data.birthDate.value}
+                <strong> Birth Date: </strong> {data['birth-date'].value}
               </ListGroup.Item>
               <ListGroup.Item className="mt-2">
                 <strong> Address: </strong> {data.city.value} -
