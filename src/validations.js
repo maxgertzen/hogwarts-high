@@ -32,7 +32,6 @@ const wizardValidations = {
 const validateWizardData = ({ target: { value, name } }) => {
   const newErrors = []
   const validations = wizardValidations[name]
-  console.log(validations)
 
   if (validations.pattern && !validations.pattern.test(value)) {
     newErrors.push(`Invalid ${name.replace('-', ' ')}`)

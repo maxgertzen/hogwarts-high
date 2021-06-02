@@ -9,24 +9,21 @@ import FormErrorMessages from "./FormErrorMessages"
 
 const Phase3 = ({ onNextPhase, prevPhase }) => {
   const [storedImageUrl, setStoredImageUrl] = useLocalStorage("image", "");
-  const [storedHobbies, setStoredHobbies] = useLocalStorage("hobbies", JSON.stringify([]));
+  const [storedHobbies, setStoredHobbies] = useLocalStorage("hobbies", "");
   const [isValidated, setIsValidated] = useState(true)
   const [wizardData, setWizardData] = useState({
     image: {
       value: storedImageUrl,
       errors: [],
     },
-    hobbies: {
-      value: storedHobbies,
-      errors: []
-    }
+    hobbies: storedHobbies,
   })
   const history = useHistory()
 
   useEffect(() => {
     const checkValidity = () => {
       for (const attr in wizardData) {
-        if (wizardData[attr].errors.length) {
+        if (wizardData[attr].errors?.length) {
           setIsValidated(false);
           return
         }
@@ -81,15 +78,14 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
 
   const addHobbie = (e) => {
     if (e.target.name && e.target.checked) {
-      setStoredHobbies(JSON.stringify(
-        [
-          ...wizardData.hobbies.value,
-          e.target.name
-        ]))
+      let obj1 = [...wizardData.hobbies, e.target.name]
+      console.log(JSON.stringify(obj1))
+      console.log(e)
+      setStoredHobbies(JSON.stringify([...wizardData.hobbies, e.target.name]))
       setWizardData((prevWizardData) => ({
         ...prevWizardData,
         hobbies: [
-          ...wizardData.hobbies.value,
+          ...wizardData.hobbies,
           e.target.name
         ]
       }))
@@ -101,24 +97,6 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
         hobbies: wizardData.hobbies.filter(hobbie => hobbie !== e.target.name)
       }))
     }
-    // else {
-    //   debugger 
-    //   console.log(wizardData.hobbie.value)
-    //   if (wizardData.hobbie.value.split(',') > 0 && wizardData.hobbie.value) {
-    //     const temp = wizardData.hobbie.value.name.split(',').remove(e.target.name).join();
-    //     if (e.target.name) {
-
-    //       setWizardData((prevWizardData) => ({
-    //         ...prevWizardData,
-    //         hobbie: {
-    //           ...wizardData.hobbie,
-    //           value: temp,
-    //         },
-    //       }))
-    //     }
-    //   }
-
-    // }
 
   }
   return (

@@ -1,15 +1,14 @@
 import React, { useEffect } from "react"
 import { Row, Image, ListGroup, Container, Col } from "react-bootstrap"
 
-// import img from './'
 function Summary({ data }) {
   useEffect(() => {
     for (const key in data) {
       localStorage.removeItem(key)
     }
+    console.log(data.hobbies)
   }, [data])
 
-  console.table(data)
   return (
     <>
       <Container className="d-flex flex-column align-items-center my-2">
@@ -41,7 +40,7 @@ function Summary({ data }) {
                 <strong> Address: </strong> {data.city.value} -
                 {data.street.value}
               </ListGroup.Item>
-              {/* <ListGroup.Item>Hobbies: {data.hobbie}</ListGroup.Item> */}
+              <ListGroup.Item>Hobbies: </ListGroup.Item>
             </ListGroup>
           </Col>
         </Row>
