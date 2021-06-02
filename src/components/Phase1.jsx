@@ -91,9 +91,7 @@ const Phase1 = ({ onNextPhase }) => {
           aria-describedby="basic-addon1"
           defaultValue={wizardData.fullname.value}
         />
-        <div className="d-flex flex-start errors-container flex-nowrap">
-          <FormErrorMessages errors={wizardData.fullname.errors} />
-        </div>
+        <FormErrorMessages errors={wizardData.fullname.errors} />
       </Form.Group>
       <Form.Group className="mt-3" controlId="email">
         <Form.Label>Email Address</Form.Label>
@@ -106,9 +104,7 @@ const Phase1 = ({ onNextPhase }) => {
           aria-describedby="basic-addon1"
           defaultValue={wizardData.email.value}
         />
-        <div className="d-flex flex-start errors-container flex-nowrap">
-          <FormErrorMessages errors={wizardData.email.errors} />
-        </div>
+        <FormErrorMessages errors={wizardData.email.errors} />
       </Form.Group>
       <Form.Group className="mt-3" controlId="birthDate">
         <Form.Label>Birth Date</Form.Label>
@@ -120,9 +116,7 @@ const Phase1 = ({ onNextPhase }) => {
           aria-describedby="basic-addon1"
           defaultValue={wizardData.birthDate.value}
         />
-        <div className="d-flex flex-start errors-container flex-nowrap">
-          <FormErrorMessages errors={wizardData.birthDate.errors} />
-        </div>
+        <FormErrorMessages errors={wizardData.birthDate.errors} />
       </Form.Group>
 
       <Form.Group className="mt-3">
