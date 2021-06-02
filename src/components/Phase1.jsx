@@ -8,11 +8,14 @@ import FormErrorMessages from "./FormErrorMessages"
 const Phase1 = ({ onNextPhase }) => {
   const [storedFullName, setStoredFullName] = useLocalStorage("full-name", "")
   const [storedEmail, setStoredEmail] = useLocalStorage("email", "")
-  const [storedBirthDate, setStoredBirthDate] = useLocalStorage("birth-date", "")
+  const [storedBirthDate, setStoredBirthDate] = useLocalStorage(
+    "birth-date",
+    ""
+  )
   const history = useHistory()
   const [isValidated, setIsValidated] = useState(true)
   const [wizardData, setWizardData] = useState({
-    'full-name': {
+    "full-name": {
       value: storedFullName,
       errors: [],
     },
@@ -20,7 +23,7 @@ const Phase1 = ({ onNextPhase }) => {
       value: storedEmail,
       errors: [],
     },
-    'birth-date': {
+    "birth-date": {
       value: storedBirthDate,
       errors: [],
     },
@@ -30,7 +33,7 @@ const Phase1 = ({ onNextPhase }) => {
     const checkValidity = () => {
       for (const attr in wizardData) {
         if (wizardData[attr].errors.length) {
-          setIsValidated(false);
+          setIsValidated(false)
           return
         }
       }
@@ -41,7 +44,7 @@ const Phase1 = ({ onNextPhase }) => {
   }, [wizardData])
 
   const handleUpdatingWizardData = (e) => {
-    const errors = validateWizardData(e);
+    const errors = validateWizardData(e)
 
     const {
       target: { name, value },
@@ -57,6 +60,15 @@ const Phase1 = ({ onNextPhase }) => {
     if (name === "full-name") setStoredFullName(value)
     if (name === "email") setStoredEmail(value)
     if (name === "birth-date") setStoredBirthDate(value)
+  }
+
+  const getTodayDate = () => {
+    const today = new Date()
+    const dd = String(today.getDate()).padStart(2, "0")
+    const mm = String(today.getMonth() + 1).padStart(2, "0") //January is 0!
+    const yyyy = today.getFullYear()
+
+    return `${yyyy}-${mm}-${dd}`
   }
 
   const handleFormSubmit = (e) => {
@@ -89,9 +101,9 @@ const Phase1 = ({ onNextPhase }) => {
           onBlur={handleUpdatingWizardData}
           aria-label="Fullname"
           aria-describedby="basic-addon1"
-          defaultValue={wizardData['full-name'].value}
+          defaultValue={wizardData["full-name"].value}
         />
-        <FormErrorMessages errors={wizardData['full-name'].errors} />
+        <FormErrorMessages errors={wizardData["full-name"].errors} />
       </Form.Group>
       <Form.Group className="mt-3" controlId="email">
         <Form.Label>Email Address</Form.Label>
@@ -114,11 +126,11 @@ const Phase1 = ({ onNextPhase }) => {
           name="birth-date"
           aria-label="Date"
           aria-describedby="basic-addon1"
-          defaultValue={wizardData['birth-date'].value}
+          defaultValue={wizardData["birth-date"].value}
           min="1900-01-01"
-          max="2199-12-31"
+          max={getTodayDate()}
         />
-        <FormErrorMessages errors={wizardData['birth-date'].errors} />
+        <FormErrorMessages errors={wizardData["birth-date"].errors} />
       </Form.Group>
 
       <Form.Group className="mt-3 form-btns">
