@@ -6,10 +6,9 @@ import { validateWizardData, validateDataOnSubmit } from "../validations"
 import useLocalStorage from "../hooks/useLocalStorage"
 import FormErrorMessages from "./FormErrorMessages"
 
-
 const Phase3 = ({ onNextPhase, prevPhase }) => {
-  const [storedImageUrl, setStoredImageUrl] = useLocalStorage("image", "");
-  const [storedHobbies, setStoredHobbies] = useLocalStorage("hobbies", "");
+  const [storedImageUrl, setStoredImageUrl] = useLocalStorage("image", "")
+  const [storedHobbies, setStoredHobbies] = useLocalStorage("hobbies", "")
   const [isValidated, setIsValidated] = useState(true)
   const [wizardData, setWizardData] = useState({
     image: {
@@ -24,7 +23,7 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
     const checkValidity = () => {
       for (const attr in wizardData) {
         if (wizardData[attr].errors?.length) {
-          setIsValidated(false);
+          setIsValidated(false)
           return
         }
       }
@@ -79,25 +78,26 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
   const addHobbie = (e) => {
     if (e.target.name && e.target.checked) {
       let obj1 = [...wizardData.hobbies, e.target.name]
-      console.log(JSON.stringify(obj1))
-      console.log(e)
+      // console.log(JSON.stringify(obj1))
+      // console.log(e)
       setStoredHobbies(JSON.stringify([...wizardData.hobbies, e.target.name]))
       setWizardData((prevWizardData) => ({
         ...prevWizardData,
-        hobbies: [
-          ...wizardData.hobbies,
-          e.target.name
-        ]
+        hobbies: [...wizardData.hobbies, e.target.name],
       }))
-    }
-    else {
-      setStoredHobbies(JSON.stringify(wizardData.hobbies.filter(hobbie => hobbie !== e.target.name)))
+    } else {
+      setStoredHobbies(
+        JSON.stringify(
+          wizardData.hobbies.filter((hobbie) => hobbie !== e.target.name)
+        )
+      )
       setWizardData((prevWizardData) => ({
         ...prevWizardData,
-        hobbies: wizardData.hobbies.filter(hobbie => hobbie !== e.target.name)
+        hobbies: wizardData.hobbies.filter(
+          (hobbie) => hobbie !== e.target.name
+        ),
       }))
     }
-
   }
   return (
     <>
@@ -116,19 +116,44 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
         </Form.Group>
 
         <Form.Group id="chessformGridCheckbox">
-          <Form.Check type="checkbox" name="chess" label="Chess" onClick={addHobbie} />
+          <Form.Check
+            type="checkbox"
+            name="chess"
+            label="Chess"
+            onClick={addHobbie}
+          />
         </Form.Group>
         <Form.Group id="moviesformGridCheckbox">
-          <Form.Check type="checkbox" name="movies" label="Movies" onClick={addHobbie} />
+          <Form.Check
+            type="checkbox"
+            name="movies"
+            label="Movies"
+            onClick={addHobbie}
+          />
         </Form.Group>
         <Form.Group id="sportformGridCheckbox">
-          <Form.Check type="checkbox" name="sport" label="Sport" onClick={addHobbie} />
+          <Form.Check
+            type="checkbox"
+            name="sport"
+            label="Sport"
+            onClick={addHobbie}
+          />
         </Form.Group>
         <Form.Group id="carsformGridCheckbox">
-          <Form.Check type="checkbox" name="cars" label="Cars" onClick={addHobbie} />
+          <Form.Check
+            type="checkbox"
+            name="cars"
+            label="Cars"
+            onClick={addHobbie}
+          />
         </Form.Group>
         <Form.Group id="dollsformGridCheckbox">
-          <Form.Check type="checkbox" name="dolls" label="Dolls" onClick={addHobbie} />
+          <Form.Check
+            type="checkbox"
+            name="dolls"
+            label="Dolls"
+            onClick={addHobbie}
+          />
         </Form.Group>
 
         <Form.Group className="d-flex justify-content-evenly mt-3 form-btns">

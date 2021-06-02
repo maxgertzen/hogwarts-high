@@ -1,73 +1,83 @@
 body {
-	background: #364b44;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-		sans-serif;
-	color: #364b44;
+  background: #364b44;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  color: #364b44;
 }
 
 .App {
-	background-color: #f6ebff;
-	border-radius: 20px;
-	height: fit-content;
-	padding: 20px;
-	max-width: 700px;
-	margin: auto;
-	box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.101),
-		0 6.7px 5.3px rgba(0, 0, 0, 0.145), 0 12.5px 10px rgba(0, 0, 0, 0.18),
-		0 22.3px 17.9px rgba(0, 0, 0, 0.215), 0 41.8px 33.4px rgba(0, 0, 0, 0.259),
-		0 100px 80px rgba(0, 0, 0, 0.36);
+  background-color: #f6ebff;
+  border-radius: 20px;
+  height: fit-content;
+  padding: 20px;
+  max-width: 700px;
+  margin: auto;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.101),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.145), 0 12.5px 10px rgba(0, 0, 0, 0.18),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.215), 0 41.8px 33.4px rgba(0, 0, 0, 0.259),
+    0 100px 80px rgba(0, 0, 0, 0.36);
 }
 
 form {
-	width: 500px;
-	height: 450px;
-	margin: 0 auto;
-	display: flex;
-	flex-flow: column wrap;
-	justify-content: center;
-	position: relative;
+  width: 500px;
+  height: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  position: relative;
 }
 
 h2 {
-	font-weight: 100;
-	text-align: center;
-	padding-bottom: 10px;
-	border-bottom: 1px solid rgb(118, 158, 204);
+  font-weight: 100;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(118, 158, 204);
 }
 
-button[type='button'] {
-	display: block;
-	appearance: none;
-	background: #333;
-	color: white;
-	padding: 10px 20px;
-	border-radius: 4px;
+button[type="button"] {
+  display: block;
+  appearance: none;
+  background: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
 }
 
 hr {
-	margin-top: 30px;
+  margin-top: 30px;
 }
 
 label {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 /* Errors container */
 .errors-container {
-	height: 20px;
+  height: 20px;
 }
 
 .errors-container.multipleErr small:last-child {
-	margin-left: auto;
+  margin-left: auto;
 }
 
 .form-group.form-btns {
-	position: absolute;
-	width: inherit;
-	bottom: 0;
+  position: absolute;
+  width: inherit;
+  bottom: 0;
 }
 
 .form-group.form-btns button {
-	align-self: flex-end;
+  align-self: flex-end;
+}
+
+@media only screen and (max-width: 768px) {
+  .summary-container {
+    row-gap: 1rem;
+  }
+
+  .summary-image {
+    margin: 1rem 0;
+  }
 }
