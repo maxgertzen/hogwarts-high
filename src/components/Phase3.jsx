@@ -16,18 +16,21 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
       value: storedImageUrl,
       errors: [],
     },
-    hobbies: []
+    hobbies: {
+      value: storedHobbies,
+      errors: []
+    }
   })
   const history = useHistory()
 
   useEffect(() => {
     const checkValidity = () => {
-      /*       for (const attr in wizardData) {
-              if (wizardData[attr].errors.length) {
-                setIsValidated(false);
-                return
-              }
-            } */
+      for (const attr in wizardData) {
+        if (wizardData[attr].errors.length) {
+          setIsValidated(false);
+          return
+        }
+      }
       setIsValidated(true)
     }
 
@@ -80,13 +83,13 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
     if (e.target.name && e.target.checked) {
       setStoredHobbies(JSON.stringify(
         [
-          ...wizardData.hobbies,
+          ...wizardData.hobbies.value,
           e.target.name
         ]))
       setWizardData((prevWizardData) => ({
         ...prevWizardData,
         hobbies: [
-          ...wizardData.hobbies,
+          ...wizardData.hobbies.value,
           e.target.name
         ]
       }))
@@ -150,7 +153,7 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
           <Form.Check type="checkbox" name="dolls" label="Dolls" onClick={addHobbie} />
         </Form.Group>
 
-        <Form.Group className="d-flex justify-content-evenly mt-3">
+        <Form.Group className="d-flex justify-content-evenly mt-3 form-btns">
           <Button
             className="w-25"
             variant="outline-success"

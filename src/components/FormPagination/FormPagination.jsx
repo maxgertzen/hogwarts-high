@@ -12,7 +12,7 @@ function FormPagination({ url }) {
     }, [url])
 
     return (
-        <div className="path-container mx-auto my-2">
+        <div className="path-container mx-auto mt-2">
             {!item ? null :
                 ['1', '2', '3'].map((value, index) => {
                     return <div className={`dot${item === value ? ' active' : ''}`} key={Math.round((index + 1) * Math.random() * 100000)}></div>

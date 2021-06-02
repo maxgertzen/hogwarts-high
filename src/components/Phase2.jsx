@@ -5,6 +5,8 @@ import { validateDataOnSubmit, validateWizardData } from "../validations"
 import FormErrorMessages from "./FormErrorMessages"
 import useLocalStorage from "../hooks/useLocalStorage"
 import { useHistory } from "react-router-dom"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
 
 function Phase2({ onNextPhase, prevPhase }) {
   const [storedCity, setStoredCity] = useLocalStorage("city", "")
@@ -100,32 +102,35 @@ function Phase2({ onNextPhase, prevPhase }) {
         />
         <FormErrorMessages errors={formProps.city.errors} />
       </Form.Group>
-
-      <Form.Group className="mt-3" controlId="phase2-street">
-        <Form.Label>Street</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter Street"
-          name="street"
-          onBlur={handleChange}
-          defaultValue={formProps.street.value}
-          required
-        />
-        <FormErrorMessages errors={formProps.street.errors} />
-      </Form.Group>
-
-      <Form.Group className="mt-3" controlId="phase3-number">
-        <Form.Label>Street Number</Form.Label>
-        <Form.Control
-          type="number"
-          label="N"
-          name="street-number"
-          defaultValue={formProps['street-number'].value}
-          onBlur={handleChange}
-        />
-        <FormErrorMessages errors={null} />
-      </Form.Group>
-      <Form.Group className="mt-3 d-flex justify-content-evenly">
+      <Row>
+        <Col sm={9}>
+          <Form.Group className="mt-3" controlId="phase2-street">
+            <Form.Label>Street</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter Street"
+              name="street"
+              onBlur={handleChange}
+              defaultValue={formProps.street.value}
+              required
+            />
+            <FormErrorMessages errors={formProps.street.errors} />
+          </Form.Group>
+        </Col>
+        <Col sm={3}>
+          <Form.Group className="mt-3" controlId="phase3-number">
+            <Form.Label>Street N</Form.Label>
+            <Form.Control
+              type="number"
+              name="street-number"
+              defaultValue={formProps['street-number'].value}
+              onBlur={handleChange}
+            />
+            <FormErrorMessages errors={null} />
+          </Form.Group>
+        </Col>
+      </Row>
+      <Form.Group className="mt-3 d-flex justify-content-evenly form-btns">
         <Button
           className="w-25"
           variant="outline-success"

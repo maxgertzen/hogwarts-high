@@ -121,7 +121,7 @@ const Phase1 = ({ onNextPhase }) => {
         <FormErrorMessages errors={wizardData['birth-date'].errors} />
       </Form.Group>
 
-      <Form.Group className="mt-3">
+      <Form.Group className="mt-3 form-btns">
         <Button
           className="mx-auto w-50 "
           onClick={(e) => handleFormSubmit(e)}
