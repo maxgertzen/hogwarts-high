@@ -7,7 +7,7 @@ function Summary({ data }) {
     for (const key in data) {
       localStorage.removeItem(key)
     }
-  }, [])
+  }, [data])
 
   console.table(data)
   return (
