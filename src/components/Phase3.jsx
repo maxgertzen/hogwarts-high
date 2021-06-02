@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
@@ -10,6 +10,7 @@ import FormErrorMessages from "./FormErrorMessages"
 const Phase3 = ({ onNextPhase, prevPhase }) => {
   const [storedImageUrl, setStoredImageUrl] = useLocalStorage("image", "");
   const [storedHobbies, setStoredHobbies] = useLocalStorage("hobbies", JSON.stringify([]));
+  const [isValidated, setIsValidated] = useState(true)
   const [wizardData, setWizardData] = useState({
     image: {
       value: storedImageUrl,
@@ -18,6 +19,21 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
     hobbies: []
   })
   const history = useHistory()
+
+  useEffect(() => {
+    const checkValidity = () => {
+      /*       for (const attr in wizardData) {
+              if (wizardData[attr].errors.length) {
+                setIsValidated(false);
+                return
+              }
+            } */
+      setIsValidated(true)
+    }
+
+    checkValidity()
+  }, [wizardData])
+
   const handleUpdatingWizardData = (e) => {
     const errors = validateWizardData(e)
     const {
@@ -148,6 +164,7 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
             variant="success"
             type="button"
             onClick={(e) => handleFormSubmit(e)}
+            disabled={!isValidated}
           >
             End
           </Button>

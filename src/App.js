@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import "./App.css"
 import Phase1 from "./components/Phase1"
 import Phase2 from "./components/Phase2"
@@ -19,7 +19,7 @@ function App() {
       ...prevObj,
       ...dataObj,
     }))
-    if (presentedPhase < 4) {
+    if (presentedPhase < 5) {
       setPresentedPhase((presentedPhase) => presentedPhase + 1)
     }
     if (!isFormActive) setIsFormActive(true)
@@ -37,7 +37,10 @@ function App() {
   return (
     <div className="App mt-5">
       <Router>
-        <FormPagination url={presentedPhase} />
+        {presentedPhase !== 4 ?
+          <FormPagination url={presentedPhase} />
+          :
+          null}
         <Switch>
           <Route exact path="/">
             <Phase1 onNextPhase={handleNext} />

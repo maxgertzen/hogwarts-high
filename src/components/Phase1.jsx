@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { FormControl, Button, Form } from "react-bootstrap"
 import useLocalStorage from "../hooks/useLocalStorage"
 import { useHistory } from "react-router-dom"
@@ -10,6 +10,7 @@ const Phase1 = ({ onNextPhase }) => {
   const [storedEmail, setStoredEmail] = useLocalStorage("email", "")
   const [storedBirthDate, setStoredBirthDate] = useLocalStorage("birthDate", "")
   const history = useHistory()
+  const [isValidated, setIsValidated] = useState(true)
   const [wizardData, setWizardData] = useState({
     fullname: {
       value: storedFullName,
@@ -25,9 +26,23 @@ const Phase1 = ({ onNextPhase }) => {
     },
   })
 
+  useEffect(() => {
+    const checkValidity = () => {
+      for (const attr in wizardData) {
+        if (wizardData[attr].errors.length) {
+          setIsValidated(false);
+          return
+        }
+      }
+      setIsValidated(true)
+    }
+
+    checkValidity()
+  }, [wizardData])
+
   const handleUpdatingWizardData = (e) => {
-    const errors = validateWizardData(e)
-    console.log(e)
+    const errors = validateWizardData(e);
+
     const {
       target: { name, value },
     } = e
@@ -115,6 +130,7 @@ const Phase1 = ({ onNextPhase }) => {
           className="mx-auto w-50 "
           onClick={(e) => handleFormSubmit(e)}
           variant="outline-success"
+          disabled={!isValidated}
         >
           Next Phase &rArr;
         </Button>

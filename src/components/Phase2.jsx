@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import { validateDataOnSubmit, validateWizardData } from "../validations"
@@ -13,6 +13,7 @@ function Phase2({ onNextPhase, prevPhase }) {
     "streetNumber",
     ""
   )
+  const [isValidated, setIsValidated] = useState(true)
   const history = useHistory()
   const [formProps, setFormProps] = useState({
     city: {
@@ -28,6 +29,20 @@ function Phase2({ onNextPhase, prevPhase }) {
       errors: [],
     },
   })
+
+  useEffect(() => {
+    const checkValidity = () => {
+      for (const attr in formProps) {
+        if (formProps[attr].errors.length) {
+          setIsValidated(false);
+          return
+        }
+      }
+      setIsValidated(true)
+    }
+
+    checkValidity()
+  }, [formProps])
 
   const handleChange = (e) => {
     const errors = validateWizardData(e)
@@ -123,6 +138,7 @@ function Phase2({ onNextPhase, prevPhase }) {
           variant="success"
           type="button"
           onClick={(e) => handleNext(e)}
+          disabled={!isValidated}
         >
           Next &rArr;
         </Button>
