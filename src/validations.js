@@ -5,7 +5,7 @@ const wizardValidations = {
   },
   email: {
     required: true,
-    pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+    pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
   },
   "birth-date": {
     required: true,
@@ -21,7 +21,7 @@ const wizardValidations = {
   },
   image: {
     required: true,
-    pattern: /([a-zA-Z0-9\s_\\.\-\(\):])+(.png|.jpeg|.jpg)$/i,
+    pattern: /([a-zA-Z0-9\s_\\.\-():])+(.png|.jpeg|.jpg)$/i,
   },
   hobbie: {
     required: false,

@@ -77,9 +77,6 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
 
   const addHobbie = (e) => {
     if (e.target.name && e.target.checked) {
-      let obj1 = [...wizardData.hobbies, e.target.name]
-      // console.log(JSON.stringify(obj1))
-      // console.log(e)
       setStoredHobbies(JSON.stringify([...wizardData.hobbies, e.target.name]))
       setWizardData((prevWizardData) => ({
         ...prevWizardData,
@@ -102,7 +99,7 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
   return (
     <>
       <Form className=" p-3">
-        <Form.Group className="mt-3">
+        <Form.Group className="my-3">
           <Form.Label>Image URL</Form.Label>
           <Form.Control
             name="image"
