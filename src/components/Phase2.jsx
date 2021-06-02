@@ -6,7 +6,7 @@ import FormErrorMessages from "./FormErrorMessages"
 import useLocalStorage from "../hooks/useLocalStorage"
 import { useHistory } from "react-router-dom"
 
-function Phase2({ onNextPhase, handlePrev }) {
+function Phase2({ onNextPhase, prevPhase }) {
   const [storedCity, setStoredCity] = useLocalStorage("city", "")
   const [storedStreet, setStoredStreet] = useLocalStorage("street", "")
   const [storedStreetNum, setStoredStreetNum] = useLocalStorage(
@@ -69,6 +69,7 @@ function Phase2({ onNextPhase, handlePrev }) {
 
   const handlePrevPhase = () => {
     history.push("/")
+    prevPhase()
   }
   return (
     <Form className="p-3">

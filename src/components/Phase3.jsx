@@ -57,6 +57,7 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
 
   const handlePrevPhase = () => {
     history.push("/phase-2")
+    prevPhase()
   }
 
   const addHobbie = (e) => {
