@@ -45,15 +45,19 @@ const validateWizardData = ({ target: { value, name } }) => {
 }
 
 const validateDataOnSubmit = (wizardData) => {
+  const validator = {}
   for (const name in wizardValidations) {
     if (name in wizardData) {
       const { value } = wizardData[name]
       const newErrors = validateWizardData({ target: { value, name } })
-      if (newErrors.length > 0) return { errors: newErrors, value, name }
+      validator[name] = {
+        value,
+        errors: newErrors
+      }
     }
   }
 
-  return { errors: [], value: "", name: "" }
+  return validator
 }
 
 export { validateWizardData, validateDataOnSubmit }

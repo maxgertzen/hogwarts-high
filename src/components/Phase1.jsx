@@ -13,7 +13,7 @@ const Phase1 = ({ onNextPhase }) => {
     ""
   )
   const history = useHistory()
-  const [isValidated, setIsValidated] = useState(true)
+  const [isValidated, setIsValidated] = useState(false)
   const [wizardData, setWizardData] = useState({
     "full-name": {
       value: storedFullName,
@@ -32,7 +32,7 @@ const Phase1 = ({ onNextPhase }) => {
   useEffect(() => {
     const checkValidity = () => {
       for (const attr in wizardData) {
-        if (wizardData[attr].errors.length) {
+        if (wizardData[attr].errors?.length || !wizardData[attr].value) {
           setIsValidated(false)
           return
         }
@@ -76,7 +76,7 @@ const Phase1 = ({ onNextPhase }) => {
 
     const { errors, value, name } = validateDataOnSubmit(wizardData)
 
-    if (errors.length > 0) {
+    if (errors?.length > 0) {
       setWizardData((prevWizardData) => ({
         ...prevWizardData,
         [name]: {

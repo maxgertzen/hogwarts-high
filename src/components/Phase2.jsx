@@ -11,13 +11,11 @@ import Col from "react-bootstrap/Col"
 function Phase2({ onNextPhase, prevPhase }) {
   const [storedCity, setStoredCity] = useLocalStorage("city", "")
   const [storedStreet, setStoredStreet] = useLocalStorage("street", "")
-  const [storedStreetNum, setStoredStreetNum] = useLocalStorage(
-    "streetNumber",
-    ""
-  )
-  const [isValidated, setIsValidated] = useState(true)
+  const [storedStreetNum, setStoredStreetNum] = useLocalStorage("street-number", "")
+
+  const [isValidated, setIsValidated] = useState(false)
   const history = useHistory()
-  const [formProps, setFormProps] = useState({
+  const [wizardData, setWizardData] = useState({
     city: {
       value: storedCity,
       errors: [],
@@ -34,8 +32,8 @@ function Phase2({ onNextPhase, prevPhase }) {
 
   useEffect(() => {
     const checkValidity = () => {
-      for (const attr in formProps) {
-        if (formProps[attr].errors.length) {
+      for (const attr in wizardData) {
+        if (wizardData[attr].errors?.length || (!wizardData[attr].value && attr !== 'street-number')) {
           setIsValidated(false);
           return
         }
@@ -44,7 +42,7 @@ function Phase2({ onNextPhase, prevPhase }) {
     }
 
     checkValidity()
-  }, [formProps])
+  }, [wizardData])
 
   const handleChange = (e) => {
     const errors = validateWizardData(e)
@@ -52,8 +50,8 @@ function Phase2({ onNextPhase, prevPhase }) {
       target: { name, value },
     } = e
 
-    setFormProps((prevFormProps) => ({
-      ...prevFormProps,
+    setWizardData((prevWizardData) => ({
+      ...prevWizardData,
       [name]: {
         value,
         errors,
@@ -68,11 +66,11 @@ function Phase2({ onNextPhase, prevPhase }) {
   const handleNext = (e) => {
     e.preventDefault()
 
-    const { errors, value, name } = validateDataOnSubmit(formProps)
+    const { errors, value, name } = validateDataOnSubmit(wizardData)
 
-    if (errors.length > 0) {
-      setFormProps((prevFormProps) => ({
-        ...prevFormProps,
+    if (errors?.length > 0) {
+      setWizardData((prevWizardData) => ({
+        ...prevWizardData,
         [name]: {
           value,
           errors,
@@ -80,7 +78,7 @@ function Phase2({ onNextPhase, prevPhase }) {
       }))
       return
     }
-    onNextPhase(formProps)
+    onNextPhase(wizardData)
     history.push("/phase-3")
   }
 
@@ -97,10 +95,10 @@ function Phase2({ onNextPhase, prevPhase }) {
           placeholder="Enter City"
           name="city"
           onBlur={handleChange}
-          defaultValue={formProps.city.value}
+          defaultValue={wizardData.city.value}
           required
         />
-        <FormErrorMessages errors={formProps.city.errors} />
+        <FormErrorMessages errors={wizardData.city.errors} />
       </Form.Group>
       <Row>
         <Col sm={9}>
@@ -111,10 +109,10 @@ function Phase2({ onNextPhase, prevPhase }) {
               placeholder="Enter Street"
               name="street"
               onBlur={handleChange}
-              defaultValue={formProps.street.value}
+              defaultValue={wizardData.street.value}
               required
             />
-            <FormErrorMessages errors={formProps.street.errors} />
+            <FormErrorMessages errors={wizardData.street.errors} />
           </Form.Group>
         </Col>
         <Col sm={3}>
@@ -123,7 +121,7 @@ function Phase2({ onNextPhase, prevPhase }) {
             <Form.Control
               type="number"
               name="street-number"
-              defaultValue={formProps['street-number'].value}
+              defaultValue={wizardData['street-number'].value}
               onBlur={handleChange}
             />
             <FormErrorMessages errors={null} />

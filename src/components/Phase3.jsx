@@ -9,7 +9,7 @@ import FormErrorMessages from "./FormErrorMessages"
 const Phase3 = ({ onNextPhase, prevPhase }) => {
   const [storedImageUrl, setStoredImageUrl] = useLocalStorage("image", "")
   const [storedHobbies, setStoredHobbies] = useLocalStorage("hobbies", "")
-  const [isValidated, setIsValidated] = useState(true)
+  const [isValidated, setIsValidated] = useState(false)
   const [wizardData, setWizardData] = useState({
     image: {
       value: storedImageUrl,
@@ -22,7 +22,7 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
   useEffect(() => {
     const checkValidity = () => {
       for (const attr in wizardData) {
-        if (wizardData[attr].errors?.length) {
+        if (wizardData[attr].errors?.length || (!wizardData[attr].value && attr === 'image')) {
           setIsValidated(false)
           return
         }
@@ -55,7 +55,7 @@ const Phase3 = ({ onNextPhase, prevPhase }) => {
 
     const { errors, value, name } = validateDataOnSubmit(wizardData)
 
-    if (errors.length > 0) {
+    if (errors?.length > 0) {
       setWizardData((prevWizardData) => ({
         ...prevWizardData,
         [name]: {
